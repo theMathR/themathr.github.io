@@ -1,4 +1,8 @@
-# Medival zombie ITS
+layout: page
+title: "Medieval Zombie ITS"
+permalink: /mzits/transcript
+
+# Medieval Zombie ITS
 You are a knight who received this titles after fending off bandits that were scheming to rob a few houses in this town. You live to serve the kingdom and her citizens. However today may be different job than you are used to. You wake up early in the morning to hear a sound of a knocking on your door. You hear the birds chirping and the neighbors blabbering so nothing seems to be amiss. You open the door to find someone special. The Duke of the King, someone who advises him in his most important work. You listen to him closely.
 "Apologies to the rude awakening but the King and the Nodok's citizens has asked for your help. There is a problem occuring outside our perimeter that we cannot legally interfere with but we have alarm that there is an army brooding beyond. We cannot ask any of our higher nobles to help with your battle officially due to any higher seen nobles fighting beyond the Nodok's perimeter may be seen as expanding it. This will cause a feud between our allies and neutrals so we ask of you who is in lower nobility and that we can still trust. His Majesty has officially ordered you to fight this coming army and whether you win or lose, we appreciate your service."
 And after finishing, he hands your a scroll with the King's official orders then leaves without another word.
