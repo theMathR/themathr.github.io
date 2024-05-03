@@ -442,7 +442,7 @@ You told him it was a fungus gem you tried to use. He nods his head like he hear
 
 https://discord.com/channels/507364684924452896/1230219454869278803/1234313405742186537
 
-[...]
+\[...\]
 
 https://discord.com/channels/507364684924452896/1230219454869278803/1235395764864290846
 
@@ -505,7 +505,7 @@ His eyes moved to look at you.
 > Look around
 
 Creeped out by the man, you look around the place and notice it filled with flasks containing fluids inside of them. Some of them fell to the floor and mix together. That's what the mysterious ooze going downstairs is.
-[...]
+\[...]\
 
 
 
