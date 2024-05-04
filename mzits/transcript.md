@@ -571,4 +571,194 @@ You attacked the torso of the Giant Snake. Hit
 The Giant Snake has fallen.   
 > Make Martin some clothes with snake skin   
    
-You take the time to skin the snake. As you are not an expert Hunter, you botch it badly but considering the amount of skin you can work with, you can get some usability. You folded, and stabbed through parts of the snake skin. It looks pretty bad but you got a torso snake shirt for Martin.
+You take the time to skin the snake. As you are not an expert Hunter, you botch it badly but considering the amount of skin you can work with, you can get some usability. You folded, and stabbed through parts of the snake skin. It looks pretty bad but you got a torso snake shirt for Martin.  
+  
+\[...\]  
+  
+"We know one of you is Horace, so give him up now! You, it's you. I remember you punching me down in the cell."  
+He points at Isik.   
+> Flee  
+  
+You both decide to run off back into the plains. You do know that the river here cannot be crossed so you need to find another way into Gillerd or lose your plans. The guards did try to run after you guys and almost had Martin but luckily the Twins dragged him along.  
+  
+Wait, you didn't mean to do that. He looks at you bitter.  
+Isik speaks bluntly to Martin  
+"Horace punched a few people and destroyed the town high off Devil's Tornado"   
+> "WHATEVER YOU DO MARTIN DO **NOT** DRINK THE DEVIL'S TORNADO"  
+  
+"I-I do not kn-know what that is b-but alright." "M-maybe i-if..."  
+Martin's eyes pops out again. Anrial decides to speak up.  
+"Why don't you show them the scroll?"   
+> "We have already, they dont care"  
+  
+Sual speaks up and giggles. "Why don't we make our own bridge?"  
+Paul pushes Saul. "Ooh, how about a boat to sail like... like pirate!"  
+> Flee back to Wult  
+  
+\[...\]  
+You walk up to Martin who is still staring at the note. He couldn't tell you were behind him until you cleared you throat. He doesn't look back  
+"Wh-who are w-we v-visiting a-again?"   
+> "A mage who might be able to make you stronger"  
+  
+"You m-mean Jamesworth?" "M-my b-brother"  
+> "Did your brother use fire magic?"  
+  
+"H-he was a m-mage wh-who ran away f-from Nodok. H-he f-found a rock. H-he didn't know h-how to u-use it. H-he was scared..."  
+"H-he c-caused the g-great ffffire of N-Nodok wh-which outlawed m-magic eeever s-since."  
+"B-but th-they didn't k-know i-it was him. Th-they j-just know i-it was magic th-that did it"  
+"J-James t-told me. He r-ran into my h-house and stayed th-there"  
+"Th-then he left... I-I didn't k-know he l-lives here"  
+Drops of blood fall from his eyes. He wipes them away  
+The forest grew silent. You look back and see Jamesworth standing there with a large bag in... townsfolk clothing which looks off on him.  
+> Wait for FM to say something  
+  
+He drops it and runs to Martin and gives him a hug. You don't think he even cares that Martin is a corpse.  
+"Man you idiot, what did you do?"  
+"D-drank bad p-potion."   
+"Horas... Horace h-helped."  
+The Fire Mage looks at the party. He seems to be crying. He bows down to his knee.  
+"Is there anything I could do to help you?"  
+> Ask FM if he could make Martin stronger so that he doesn't die on our adventurees  
+  
+"He messed up big time. He usually um... he had a bad habit of testing the potions. I told him he shouldn't do that but he likes doing it. And look where it got him. You are correct he is frail but he will not die. The necromancy drink will not kill him unless you give him a health potion. He was like this for a long time, I can tell. His wounds won't heal quickly enough when he comes... 'human' so he will have holes then he will die from that. He is better off like this."   
+"Is there anything else you want me to help you with?"  
+> Check our stats  
+  
+Horace "The crumpled paper" Jean Krispy Dinglebert the 3rd - Padded Armor | Axe  
+Health: 14/15  
+Defense: 5  
+Attack: ?  
+Natural advantage: 50% + ?  
+Current morph: human  
+  
+> Ask the mage to come with us on our adventures to possibly get his name cleaned up  
+  
+"I-I am not in the greatest of shapes for adventuring."  
+He emphasizes by showing off his wrinkled face.  
+> "Neither of us are"  
+  
+"Aren't you a knight?"  
+> "A Knight missing an arm"  
+  
+"Why don't you fix that again like you did last time?"  
+"You used a rotting meat as your temporary arm when you made that Bone Axe"  
+"You could go to the doctor's and ask for a prosthetic too."  
+> Respect the mage's decision to not come along  
+  
+Jamesworth opens the hatch with a key and heads inside. You decide to wait outside while you he gets them for you. You do peek through and see him levitate up. After a few minutes, he comes back down with three potions.  
+He hands you the three flasks which are light green, pink, and yellow colors.  
+> Ask him about the potions  
+  
+As the mage gives you the potions, he explains what the pink one does.  
+"This one here makes you angrier. You feel the rage in your heart and attack with ferocity."  
+He tries explaining the other ones but Martin interrupts.  
+"I-I got this one. Th-those are the same ones I-I gave y-you earlier. Y-yellow is focus a-and g-green is d-defense."  
+The Fire Mage smiles and shakes his head as Martin interrupts him   
+> Head onto the next town  
+  
+Everybody got ready to leave but before you could, the Fire Mage asks you to wait, it might not take that long so you stay anyways. It takes a minute or so but he comes back with a bright blue bird. He holds out the bird with one finger. "I want you to have this."  
+> Take the bird  
+  
+"Once a day, throw the bird in the sky. It will come back to me and I will give it a potion. It is the least I can do after everything you did and me not being able to adventure with you."  
+> Thank the mage  
+  
+You thank you mage by shaking his hand. He looks delighted. Martin also shakes his hand where it just falls off. The mage and Martin laughs it off.  
+> Stay a little longer  
+  
+What would you like to do while you stay?  
+> Ask Jamesworth about how he's been doing  
+  
+"It has been lonely honestly and quite frightening. I'm sure you noticed how paranoid I've been with the traps in the castle. I do feel bad about not going with you but I think it is for the best."  
+"I... I was already going to do that."  
+He said this sheepishly.  
+"I was going to add notes to my bird and talk this way with you, um, when I added my potions."  
+What would you like to do while you stay?  
+> Ask Jamesworth what Martin's real name is  
+  
+Horace asks the Fire Mage what was his brother name?  
+"You named him Martin? That's... well you wouldn't have known but his name is Jackie."  
+Jackie looks astonished hearing this.  
+"I-I did n-not know th-that! B-but they l-like the n-n-name Marteen. W-would it b-be fine to c-call me b-by my name? M-my real one."  
+> Call him by his original name  
+  
+Considering that you now know his real name, it would be rude to call him by his name we gave him. Anrial shakes his hand and calls him by his real name Jackie. She seems to gotten use to his appearance now. The Twins just offer their disappointment because they liked the name Martin.  
+What would you like to do while you stay?  
+> Talk with Isik  
+  
+You look around for Isik but he still seems to be gone. You think he is making his round around the place still. You should go after him.  
+> Wait 8 minutes outside the tower for Isik  
+  
+You decide to wait with the party for Isik to return. Around that time, Jamesworth said his goodbyes while Anrial and Jackie helped him with his groceries. Isik returns to find everyone sitting around talking.  
+"So what happened?"  
+Horace explains that you found the mage and Martin's name is Jackie and how they will stay like this but you got potions and a bird.  
+"How did all of this happened when I was gone?"  
+> Explain the series of events  
+  
+You explained the series of events  
+You told him after you spoke with him, he waited for the mage to come back where he was found with groceries. They also found out he was the brother of Jackie and also the mage did some bad stuff in Nodok too. After returning his brother to him, he thanks us and gave us a bird to talk to him and gotten potions.  
+> Also explain that we were worried that the Deer(?) got him  
+  
+Isik nods his head while you speak but you aren't sure if he really head what you said. "DON'T YOU KNOW HOW TO SHUT YOUR MOUTH"  
+Everybody looks at you and Isik. "Are you possessed by something?" (Isik said that)  
+> Wait for the party's reaction  
+  
+They party comes over to comfort you while Anrial gives Isik a handful. Isik just looks away, bored. Even the Twins tried comforting you the only way they know how, by trying to distract you but you were busy looking at Anrial  
+You see Isik stare at you  
+You felt his cold gaze go through you.  
+After Anrial is finished she goes back after wiping her face. You don't know what she said but you think she released all of the stress she built up along the way. She is not the type to be adventuring through cults and being with criminals.  
+Isik gestures you to come over by pointing at you then curling his finger multiple times  
+Anrial keeps watch  
+> Come over to Isik  
+  
+You hear him grunt as he looks up to the sky. He speaks this in a monotonous voice  
+"I guess I should apologize. You are the leader and... we should follow you."  
+> Accept the apology  
+  
+His voice gets quieter as he looks at you  
+"I thought I told you to keep this deer thing a secret. Shut your stupid mouth."  
+He continues to speak quietly  
+"It's better if they don't know about it. I- hrng..."  
+He speaks in his normal voice.  
+"I am not going to speak about this anymore"  
+> Ask nicely  
+  
+You ask nicely that you would like to know about your enemy. Isik stares at you and walks off to the group.  
+"I don't know what you are talking about."  
+> Insist  
+  
+You really want to know about the deer. Isik laughs at you and tells the group.  
+"Listen to Horace speak about this deer again ha!"  
+Anrial and Jackie laugh nerviously while the Twins chuckle.  
+> Insist  
+  
+Isik starts to get mad  
+"Alright Horace, this deer thing is getting annoying. Stop talking about it, joke or not. It is getting- stop talking about it."  
+Isik points to Anrial.  
+"You are scaring her about it that you are this crazy or that is exists."  
+> Stop talking about it  
+  
+The others didn't notice since Isik was in front of the group but you see him smile. He looks back at the group and walks through. Anrial walks closer to you while playing with her hands and twisting a pen. The Twins chuckle nerviously now as he walks away.  
+> Leave to Gillerd  
+  
+You gathered the team and begin their way to Gillerd. You told the Fire Mage goodbye one more time before fully making their way out. Deep in the forest, you find corpses all around the place including the giant snake. Terry will be eating good.  
+> Pet the mushroom again and leave  
+  
+You pat the fungus happily. You can tell it liked that. You left on your way to Gillerd. Luckily though, on the way there, there was no encounters and events besides Jackie stumbling. You make it near the entrance of Gillerd where Anrial had a thought  
+"Why don't I buy stuff for you? They are fine with me, I wasn't put in jail."  
+  
+Horace "The crumpled paper" Jean Krispy Dinglebert the 3rd - Padded Armor | Axe  
+Health: 14/15  
+Anrial - Cloth Armor | Short Wooden Bow  
+Health: 13/15  
+Isik - Hide Armor | Short Sword  
+Health: 5/15  
+Paul - Hide Armor | Dagger  
+Health: 1/15  
+Saul - Hide Armor | Double Daggers  
+Health: 1/15  
+Jackie - Empty | Mace  
+Health: 0/5   
+> Ask Anrial what she wants to buy  
+  
+"I want to buy some um... better armor for two or three of us if that is fine for you."  
+She leaves into the town of Gillerd where you lose sight of her as she goes down the entrance of the town. You do not dare to go any farther down in case you get caught. You look at your party members and still see Isik eying at you, gazing through you. After several minutes of the party talking, Anrial comes back with one Studded Leather armor and one Padded armor. You do not know the difference and even if there is a difference between them. Who gets what? Anrial does say the hide armor was cheaper than the armor she got.  
