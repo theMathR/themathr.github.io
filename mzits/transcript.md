@@ -948,10 +948,60 @@ You focus on the noise and decide to sneak not past it but towards it. Whatever 
 You think about the snake and felt the gem on your arm. You thought about it decomposing and fungus growing on it. You looked at the snake and saw a small mushroom growing where the crime scene has taken place.  
 > make it consume the snake  
   
-https://discord.com/channels/507364684924452896/1230219454869278803/1234975044917137409  
-    
-\[...\]   
-   
+You continued to think about the mushrooms consuming the snake. More fungi pops up, sprouting from the snake itself and it.  
+> MORE  
+  
+The fungi continues to spread until the snake isn't visible anymore, roots like tendrils spread all over the snake, gripping it like a hand. They snake will soon decompose and the fungi will feed on it.  
+> Now let it consume all in our wake  
+  
+You left the mushroom continue it's work by itself. You even lightly touched it where a small root wrapped around your finger. You let it be  
+It soon connects to the other fungi in the wild as it socializes with the world  
+Independent now but it will soon turn to the collective as it should  
+> Find that deer  
+  
+You don't really know where that deer went but you have a feeling to go somewhere. You ran towards where you think it went, cutting through trees. What you find in your wake are other dead animals that includes more snakes, wolves, squirrels, and even deer.  
+> Find that deer!  
+  
+You continued to follow that deer. More corpses follow its wake of destruction. You get the feeling that this is a bad idea.  
+You get closer to where you think that deer is. Unfortunately, you will need to focus in other to do what you want with you gem, wasting time. You are deep in the forest where the trees are bearing down on you. You can't find that deer but what you hear is... squealing?  
+You followed that noise and saw that deer holding down a wolf. It's mouth is around its neck and squeezing its jaw down. Blood is squirting from the neck while the deer continues to chew on it. The wolf stops moving and the deer gets to work on the sides of the wolf.  
+> Sneak attack  
+  
+You sneak past the small sticks and leaves on the ground. You manage to past them gracefully. You get closer to the deer and you pull out your Chain Axe as silently as you can. You wind it up then throw it to the deer. The Chain Axe slices the back of the deer and it is immediately enraged.  
+  
+The Deer(?) stands on its legs  
+Your health is 12/20  
+> Attack torso using axe  
+  
+**Anrial is missing**  
+**Isik is missing**  
+**The Twins are missing**  
+The Deer(?) lands a right hook on your face  
+You are concussed. Reaction defense is now slower  
+You throw the Chain Axe but the deer dodges out of the way  
+(reaction minigame)  
+The Deer(?) punches the air  
+Your health is 10/20   
+> Attack torso using magic  
+  
+**Anrial is missing**  
+**Isik is missing**  
+**The Twins are missing**  
+The Deer(?) tries to headbutt you. You dodge the headbutt  
+You throw the use fungus magic on the torso of the deer. The deer coughs and sneezes. *Major damage*  
+(reaction minigame)  
+The Deer(?) punches a hole into a tree.  
+*You get the feeling this next attack will hurt*  
+Your health is 10/20   
+> Attack head with axe  
+  
+**Anrial is missing**  
+**Isik is missing**  
+**The Twins are missing**  
+The Deer(?) charges towards you. Luckily you dodge out of the way but next time may not be so lucky.  
+You throw the Chain Axe but the deer catches the axe and pulls the chain.  
+(reaction minigame)  
+  
 https://discord.com/channels/507364684924452896/1230219454869278803/1235395764864290846   
    
 You followed Isik to the back of the building where you see him still moving and looking around the corners. He looks back and readies his sword but lets down.   
