@@ -69,13 +69,21 @@ function save(form) {
 }
 
 function load(form) {
-    const text = navigator.clipboard.readText();
+    let text = form.load_text.value;
     form.name.value = text.slice(0, text.indexOf(':'));
     
     let armor_stats = text.slice(text.indexOf(':')+1,text.indexOf('|')).trim().split('/');
     form.shield.value = armor_stats[0];
     form.armor.value = armor_stats[1];
     form.hp.value = armor_stats[2];
+    
+    let weapon_stats = text.slice(text.indexOf('|')+1).trim().split(' ');
+    form.sh_dmg.value = weapon_stats[0].slice(0,-1)
+    form.ar_dmg.value = weapon_stats[1].slice(0,-1)
+    form.hp_dmg.value = weapon_stats[2]
+    form.acc.value = weapon_stats[3].slice(0,-1)
+    form.crit.value = weapon_stats[4].slice(0,-1)
+    form.opt_dist.value = weapon_stats[5].slice(0,-2)
 }
 
   </script>
@@ -96,7 +104,9 @@ function load(form) {
    <label for="opt_dist">Optimal dist.:</label> <input name="opt_dist" type="number" min=0 required/>
 
    <button type=button onclick="save(document.forms['attacker']);">Save to clipboard</button>
-   <button type=button onclick="load(document.forms['attacker']);">Load from clipboard</button>
+   
+   <input type="text" name="load_text"/>
+   <button type=button onclick="load(document.forms['attacker']);">Load</button>
   </form>
   
   <form name="target">
@@ -113,8 +123,10 @@ function load(form) {
    <label for="crit">Crit. chance:</label>      <input name="crit" type="number" min=0 required/>
    <label for="opt_dist">Optimal dist.:</label> <input name="opt_dist" type="number" min=0 required/>
 
-   <button onclick="save(document.forms['target']);">Save to clipboard</button>
-   <button onclick="load(document.forms['target']);">Load from clipboard</button>
+   <button type=button onclick="save(document.forms['target']);">Save to clipboard</button>
+   
+   <input type="text" name="load_text"/>
+   <button type=button onclick="load(document.forms['target']);">Load</button>
   </form>
   
   <br />
