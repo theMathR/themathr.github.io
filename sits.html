@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+ <head>
+  <title>SITS attack calculator</title>
+  <script>
+function roll_for(value) {
+    return Math.floor(Math.random() * 100) < value;
+}
+
+function attack() {
+    const attacker = document.forms['attacker'];
+    const target = document.forms['target'];
+    
+    const output = document.getElementById('output');
+    output.innerHTML = attacker.name.value + " attacks " + target.name.value + "\n";
+    
+    let accuracy = attacker.acc.value;
+    if (!roll_for(accuracy)) {
+        output.innerHTML += "MISS";
+        return;
+    }
+    
+    let damage = attacker.hp_dmg.value;
+    let shield_modifier = attacker.sh_dmg.value / attacker.hp_dmg.value;
+    let armor_modifier = attacker.ar_dmg.value / attacker.hp_dmg.value;
+    
+    if (roll_for(attacker.crit.value)) {
+        damage *= 2;
+        output.innerHTML += "CRITICAL HIT"
+    } else {
+        output.innerHTML += "Hit";
+    }
+    
+    if (roll_for(target.shield.value)) {
+        let shield_damage = shield_modifier * damage;
+        if (target.shield.value < shield_damage) {
+            damage -= Math.floor(target.shield.value / shield_modifier);
+            target.shield.value = 0;
+            output.innerHTML += " through shield";
+        } else {
+            target.shield.value -= shield_damage;
+            output.innerHTML += " on shield";
+            return;
+        }
+    }
+    
+    let armor_damage = Math.floor(damage * armor_modifier * target.armor.value/100);
+    
+    if (target.armor.value < armor_damage) {
+        armor_damage = target.armor.value;
+        target.armor.value = 0;
+        output.innerHTML += "\n" + target.name.value + "'s armor is broken";
+    } else {
+        target.armor.value -= armor_damage;
+    }
+    
+    let hp_damage = damage - Math.floor(armor_damage/armor_modifier);
+    
+    target.hp.value = Math.max(0, target.hp.value - hp_damage);
+    if (target.hp.value == 0) {
+        output.innerHTML += "\n" + target.name.value + " fell unconscious";
+    }
+}
+
+function save(form) {
+    navigator.clipboard.writeText(
+        form.name.value + ': ' + form.shield.value + '/' + form.armor.value + '/' + form.hp.value + ' | ' + form.sh_dmg.value + ', ' + form.ar_dmg.value + ', ' + form.hp_dmg.value + ' ' + form.acc.value + '% ' + form.crit.value + '% ' + form.opt_dist.value + 'FT'
+    );
+}
+
+function load(form) {
+    const text = navigator.clipboard.readText();
+    form.name.value = text.slice(0, text.indexOf(':'));
+    
+    let armor_stats = text.slice(text.indexOf(':')+1,text.indexOf('|')).trim().split('/');
+    form.shield.value = armor_stats[0];
+    form.armor.value = armor_stats[1];
+    form.hp.value = armor_stats[2];
+}
+
+  </script>
+ </head>
+ <body>
+  <form name="attacker">
+   <h1>Attacker</h1>
+   
+   <label for="name">Name:</label>              <input name="name" type="text" required/>
+   <label for="shield">Shield:</label>          <input name="shield" type="number" min=0 required/>
+   <label for="armor">Armor:</label>            <input name="armor" type="number" min=0 required/>
+   <label for="hp">HP:</label>                  <input name="hp" type="number" min=0 required/>
+   <label for="sh_dmg">Shield damage:</label>             <input name="sh_dmg" type="number" min=0 required/>
+   <label for="ar_dmg">Armor damage:</label>             <input name="ar_dmg" type="number" min=0 required/>
+   <label for="hp_dmg">HP Damage:</label>             <input name="hp_dmg" type="number" min=0 required/>
+   <label for="acc">Accuracy:</label>           <input name="acc" type="number" min=0 required/>
+   <label for="crit">Crit. chance:</label>      <input name="crit" type="number" min=0 required/>
+   <label for="opt_dist">Optimal dist.:</label> <input name="opt_dist" type="number" min=0 required/>
+
+   <button type=button onclick="save(document.forms['attacker']);">Save to clipboard</button>
+   <button type=button onclick="load(document.forms['attacker']);">Load from clipboard</button>
+  </form>
+  
+  <form name="target">
+   <h1>Target</h1>
+   
+   <label for="name">Name:</label>              <input name="name" type="text" required/>
+   <label for="shield">Shield:</label>          <input name="shield" type="number" min=0 required/>
+   <label for="armor">Armor:</label>            <input name="armor" type="number" min=0 required/>
+   <label for="hp">HP:</label>                  <input name="hp" type="number" min=0 required/>
+   <label for="sh_dmg">Shield damage:</label>             <input name="sh_dmg" type="number" min=0 required/>
+   <label for="ar_dmg">Armor damage:</label>             <input name="ar_dmg" type="number" min=0 required/>
+   <label for="hp_dmg">HP Damage:</label>             <input name="hp_dmg" type="number" min=0 required/>
+   <label for="acc">Accuracy:</label>           <input name="acc" type="number" min=0 required/>
+   <label for="crit">Crit. chance:</label>      <input name="crit" type="number" min=0 required/>
+   <label for="opt_dist">Optimal dist.:</label> <input name="opt_dist" type="number" min=0 required/>
+
+   <button onclick="save(document.forms['target']);">Save to clipboard</button>
+   <button onclick="load(document.forms['target']);">Load from clipboard</button>
+  </form>
+  
+  <br />
+  
+  <label for="dist">Distance:</label>          <input id="dist" type="number" min=0 required/>
+  <button onclick="attack();">Attack</button>
+  
+  <pre id="output"></pre>
+ </body>
+</html>
