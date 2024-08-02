@@ -1000,7 +1000,222 @@ Your health is 10/20
 **The Twins are missing**  
 The Deer(?) charges towards you. Luckily you dodge out of the way but next time may not be so lucky.  
 You throw the Chain Axe but the deer catches the axe and pulls the chain.  
-(reaction minigame)  
+(reaction minigame, lost)  
+  
+*Instead of taking damage. You lose the axe.*  
+The Deer(?) twirls the axe  
+*You get the feeling this next attack will hurt*  
+Your health is 10/20   
+> Use magic on its head (eyes more specifically)  
+  
+**Anrial is missing**  
+**Isik is missing**  
+**The Twins are missing**  
+The Deer(?) twirls the axe and throws it towards you. You manage to dodge it but next time may not be so lucky.  
+You tried to think about using magic on the Deer(s) head. Mushrooms grow around you. You don't think it worked.  
+The Deer(?) twirls the axe  
+Your health is 10/20  
+> Yell for help  
+  
+**Anrial is missing**  
+**Isik is missing**  
+**The Twins are missing**  
+The Deer(?) twirls the axe and throws it towards you. It slices your arm. You get the feeling you are on your last legs  
+You tried yelling for help. You heard yelling back. You need to wait for a turn.  
+The Deer(?) twirls the axe  
+Your health is 2/20   
+  
+You wake up with a light shining down on you. You felt like death. You look around and see a familiar face.   
+"Morning. I heard you yelling."  
+It's the Fire Mage. "Shush. You'll bring it back. I had to scare the beast off with fire..."  
+"You took some damage... Don't get up"  
+You look around and tried to get up but realize you couldn't. You feel to your side when you tried to get up. Confused, you look at your arm...  
+*Your left arm is missing.*  
+"I did what I could but... It chewed your arm right off. I know I am always the one to help you but this thing I cannot fix."  
+*Danger: You lost max health! Health: 1/15*  
+(mushroom's name set to Patrice Terry)  
+"I'm sorry to say but you are in no shape to fight. You... You have to abandon your mission. Yeah that mission from your scroll? Go back to Nodok. Someone more suitable will take your place. I'm... I'm sure the King will be happy to see you alive though."  
+> Talk with the Fire Mage, ask his name  
+  
+"I'm sorry, I cannot tell you that in case Nodok guards tries to link my family through my name. It has happened before and I had to... silence them. You understand?"  
+> "Do you know any good prosthetic places?"  
+  
+"There is a place far on your travels. You have to continue your way there for something that can bring your arm back. But I would not risk it. It's too dangerous. You are better off leaving."  
+"The best I can do it a long stick as your arm. I'm not a good doctor for flesh, just for magic. I just know where basic parts are. More likely you will find doctors in Nodok or Gillerd but I doubt they will do much."  
+> Give one (1) fungus to the mage to thank him  
+  
+You hand a small mushroom to the mage as thanks. The mage takes it with confusion.  
+"You are a strange man."  
+> Use fungi magic to implant broken sword as our left arm  
+  
+You held the sword up to your shoulder and tried to summon fungi to hold it in place. You though about the fungi growing around the handle. The fungi does grow and hold the handle but you cannot move it.  
+"I admire the commitment to your magical abilities but I am afraid this is something you cannot fix unless you are very creative."  
+> Ask the mage for info about using the flesh and bones from the skinwalker's victims and using magic to hold it together  
+  
+He looks at you disgusted but answers your question  
+"Ugh... wouldn't... wouldn't the mushrooms constantly eat the rotting flesh if it connected to it? The only reason the fungus doesn't eat you is because the food you eat is what the fungus also eats. If you will use dead meat as an arm... you will need to always fix it. I did say you would need to be creative and... this is creative I suppose."  
+You look excited at getting your arm back even if it isn't really an arm. The mage shakes his head.  
+"I will go with you. You sure are a strange man. Are you right in the head?"  
+> Allow the mage to follow us  
+  
+You allowed the mage to follow you along. You look to be at the exact same place where you fought the deer. Blood from the battle is splattered everywhere. You traced your steps to where you saw the carcasses and see that they are rotting already. Mushrooms are already eating the corpses, making it harder for the meat to stick to each other. Nevertheless, you remove your sword from your arm and squish meat onto your stubbed arm. You thought about the fungi roots holding it in place, keeping it stable. Roots grow through your shoulder and into the rotting meat. Mushrooms grow at that meat, covering it like a scale skin. You look ecstatic while the mage looks disgusted. You continued getting globs of meat and place it longer and longer on your body, sticking bones through the meat to act like your bones and to keep it from being a wobbly long string of meet. The best thing you can use for a hand is a wolf paw so you slowly pulls that paw away from the rotting corpse and placed it on the end of your rotting wrist. You got a new hand!  
+  
+You paw falls down while connected to roots like a hinge and inside your wrist was a bone that slowly moved to the side. There is now a large hole leading down your arm that occasionally coughs spores.  
+> Create a Bone Axe  
+  
+The smell of rotting meat bothers you but having one less arm bothers you more. You also need a weapon that isn't a broken sword. You ripped the spine off a snake and grabbed the jaw of wolf. Using tendons as twine, you tied it together for a small chain axe that can't fully rotate but it is what you have.  
+Decomposing corpses are your tools like fungi. You realize you are becoming more like fungi every day  
+> Yipee?  
+  
+You look back at the fire mage and see him throwing up  
+"Hrrk! I'm sor- HRRK! That's disgusting" He walks further away, while continuing to puke  
+The mage comes back after finishing. He looks pretty sick and he won't look at you.  
+"I'm sorry but that is nasty. I should keep going with you to keep you safe. You are still hurt but keep this up, I'll leave right away ugh..."  
+> Leave with mage in direction of Gillerd  
+  
+You decide going with a magic based temporary(?) party member is better than using armor if you are already almost dead.  
+The mage showed you the way towards the path that you seek so you can walk towards Gillerd. Through the woods, you find a patch of mushrooms that you remembered you summoned to eat the snake. You checked up on it and saw that it was having a nice feast. Happy that it is fine, you continued on your way to finding the path when you heard people calling your name.  
+"HORACE! WHERE ARE YOU! WE KNOW YOU RAN THIS WAY!"  
+> Follow the voices in the forest  
+  
+You went deeper into the forest to find those voices. Odd how it is in the middle of the forest.  
+You continued to follow the voices with the mage behind you. The mage confused, followed the voices too until you reached the source of it. You see a Deer(?) with a Chain Axe on its back walking around.  
+The Deer(?) looks dead at you  
+  
+The Deer(?) twirls the axe  
+Your health is 2/15  
+> Run away!!  
+  
+You realized it was a bad idea to fight this Deer(?) so you immediately run away but before you could, the Fire Mage stepped up to the Deer(?) and drank something from a flask. He grew closer to the Deer(?) who is backing away. The Fire Mage holds out a gem and spits into it causing a large fire breath to shoot out towards the Deer(?). The leaves all around the fire burnt to a crisp. The ground around him catches fire. The fur around the Deer(?) catches fire and it immediately runs away.  
+  
+"Animals hate fire"  
+"We should get back to the path"  
+Horace and Mage decide to walk back to the pathway. You found the land mark of carcasses and mushrooms on the way to the path until you found the road. You want to go to Gillerd to stock up and maybe find your friends again. You and the Mage walk down the path while he tries making conversation but you usually do not answer but he keeps trying. You did come across wolves but he blew fire at them too. He seemed to be a great asset at least right now.   
+You make it to Gillerd where you find it bustling with people. You tried to keep going but this is where the Mage stops.  
+"I cannot go any farther. I rather not talk with these people."  
+> Ask nicely to come  
+  
+Horace asks the Mage to come along  
+"They don't like me."  
+> Continue to convince the mage to come along  
+  
+You want the Mage to come along  
+"They are scared of my magic. I'm sorry."  
+> Leave him  
+  
+You decide to leave the Mage. You thank him for everything he did then leave him. He waves goodbye. As you entered the town, it looks like a monster went through this area. Some buildings walls are caved in and the ground looks like a hole was dug for each step.  
+There are plenty of people repairing the damages of this place when you saw a woman looking at you then run away. You saw several people do this.  
+You wanted to ask about what happened to Gillerd while you were gone but everytime you tried, they usually run away  
+You continued to persist to find someone but they kept running away. You get the feeling you will find trouble.  
+> Convince the people I'm (h)armless  
+  
+They continued to run away and in fact. Some people wearing some armor appear before you brandishing weapons. The tall slender guard speaks to the other tall chubby guard  
+"Is that Horace? Look at his arm? I'm not sure if we should capture him."  
+> Tell them (short version) of what happened. and that we mean no harm  
+  
+You told the guards that you were the one that turned into a monster in the bar and attacked people and you were sorry because you were drunk but before you could finish, they immediately grab you.  
+> Continue to convince  
+  
+Your continued attempts to say you are harmless and you were sorry meant nothing as they gag you with cloth.  
+"Man this guy won't shut up."  
+You take you around town while people around you cheered seemingly for your arrest.  
+  
+"They take you near town hall to what seemed to be the jail station of this place. You are taken in and over heard them talking.  
+"Yeah this guy is real scum, fighting people, causing a ruckus, destroying the town. We'll take them with the others."  
+You are lead down stairs to a small row of jail cells. Some of them are empty while others are not. They continued walking and found a small cell for you. They ungagged you and throw you in. Your rotting left arm almost falls off but luckily it stayed attached.  
+You sat in the crappy bad and thought about the things that happened when you were drunk. You done a lot of bad things and more that you don't remember doing. While you were reminiscing, you heard someone call out to you. It was Isik and the Twins.  
+"So Horace, what are you in for?"  
+> "To be honest wit ya im not quite sure. They say i destroyed the town, but i dunt remember doin that"  
+  
+"Yeah, you were on a rampage. They ran you out, ran through some housings, I think you punched a pole and almost broke it. Some part of it caught on fire."  
+You overheard the Twins complaining while Isik kept talking.  
+"I don't know what else you did but I thought you were supposed to be a good guy. How did this happen?"  
+> "Fungus."  
+  
+You wanted to speak back but Isik interrupts you.  
+"Whatever, I don't want to hear it"  
+"What's the deal smart man? We waiting here for... several months? Won't that army take out this place in the path of destruction?"  
+> Try to persuade a guard to get you out  
+  
+You yell out for a guard to notice you and when they did, you tried to convince them that you were sorry.  
+"Yeah well everybody is sorry when they get into jail. I don't want to hear it from a criminal."  
+Isik just look bored as the guard passes by but the twins are lightly crying  
+> Go fungi  
+  
+You tried morphing into a fungus creature once more to break through the metal bars. You aren't sure if you will break through these though. You gained mushroom scales all around your body. You felt fully connected throughout your skin. You tried pulling on the bars. It bent but it would break. You grunted as the bars continued to bend but while this is happening, a guard overheard the noise and came rushing to your cell to see what was happening. They brandished a spear. You are on low health so you aren't sure if you could fight him.  
+> Stop  
+  
+The soldier came by fully to see what was going on. You tried fixing the bars so it wouldn't look off. The soldier so you messing with the bars.  
+"Hey! Stop making all that noise, it is annoying and will uh, make your sentence longer."  
+He walked off. Isik lightly chuckled.  
+You sat by your bed again. The only thing of note you see is Isik constantly looking around and pressing on the walls and ceiling. Surely a hardened criminal like him will have some sort of plan if it comes to him  
+> "you got a better idea mr criminal?"  
+  
+"Yeah yeah I'm working on it Mr Knight. And keep your voice down"  
+Isik continues to look inside and outside of his jail when he points at something. You look at what he is pointing and you a very tall barred window outside of the jail cell leading back into town  
+He then points to something out of your view and lightly slaps the side of his hip a couple of times, makes a twisting motion with his hand, then two fingers moving separately then points to the window. He then points up one index finger after a second then points to the stairs   
+He makes a thumbs up  
+> I make a thumbs down and whisper (what the hell does any of that mean??)  
+  
+He slaps his forehead then does that again. He points to you then to his temple and jabs it a couple of times  
+  
+Isik jabs his index finger to his chest, makes a circle with his thumb and index finger that is on his hip then moves his arm away while he points to something out of view while making a talking gesture with his hand. He then points to you  then shakes the bars gently  
+He gives you a wink  
+> ok got it he wants us to distract the guard with talking  
+  
+You give Isik the thumbs up after acting out every movement he does.  
+Horace and Isik both ask the guard to come over to them despite being in seperate cells   
+"I'm not a servant to criminals but I need to check on you. Don't make this a thing."  
+The guard walks over to your cell  
+You can see Isik panic while the guard moves to your cell.  
+Isik, while the guard is looking away, points at you and points at the guards waist which has a key decides to shake the bars and make a scene  
+"I'M GETTING OUT OF HERE IM INNOCENT"  
+> Take the key  
+  
+Horace takes the moment to grab the key off the latch on the guards pocket.  
+You grab the key but you aren't no sneak. The guard felt something and immediately looks at you confused.  
+> Hide the key in our fungal flesh and play dumb  
+  
+You pressed the key into the rotting flesh that is your left arm in hopes of hiding it. You ask the guard why is he looking at you while Isik is right about to escape. The guard thinks you are right and leaves out of view?  
+He comes back with a double pronged spear and is walking to Isik's cell   
+> Use the Henry Stickmin teleporter  
+  
+~~You teleport into the abyss~~  
+## ~~Fail~~  
+*~~Why do you even try~~*  
+~~Map~~  
+~~Restart~~  
+> Shake the bars  
+  
+You shake the bars of your prison, hoping to make a racket so that the guards focus will be on you. Unfortunately you are not the priority and the guard stabs Isik in the shoulder then went to look at you.  
+"Oh yeah? You want to escape too?"  
+He walks over in a stride  
+> Show the guard the Royal Scroll  
+  
+You check your pockets and under your armor for the scroll but it seemed to be missing?  
+You looked for your broken sword too and that is also missing  
+They must've taken them while carrying you to jail  
+You hear Isik cursing in the back while the twins are trying to tend to his wounds  
+> Use magic  
+  
+You feel your gem tattoo on your shoulder and think about something... The guard is on your cell  
+> SPORE BLAST HIS EYES  
+  
+Your hand paw unhinged from its wrist, falling right off showing a large hole going down your forearm that is full of mushrooms holding it open. The guard looks disgusted, stops immediately like he hit an invisible wall.  
+You shoot spores onto his face, mainly his eyes. His face is covered in yellow and green spores that look like booger chunks. His screaming is loud and you take the time to unlock the cell you are in. You are finally outside of that cramp cell. You hear pounds coming downstairs   
+> Knock out and then open Isik's door  
+  
+You manifest vines that comes out of the guard's arms. You take the opportunity to wrap his arms around using the vines. He struggles aggressively while you try to tie him up but you think you have it. You tried to unlock the door with Isik inside when two guards enter the scene.  
+> Open the door anyway  
+  
+You take the time to open Isik's cell but that gives the time for the guards to attack you one of the spears hit your rotting arm while then other hit your leg. You fall to the ground while opening the door causing the twins and Isik to ascend upon them.  
+> Run through  
+  
+You try push past the guards but they stop you. You are kneeling on the ground trying to get back up when Isik sucker punches one causing them to momentarily black out and fall to the ground while Saul jumps on top of the guard, hammering him down. Paul is helping you up go upstairs.   
+https://discord.com/channels/507364684924452896/1230219454869278803/1235219944824770720  
+  
+  
+\[...\]  
   
 https://discord.com/channels/507364684924452896/1230219454869278803/1235395764864290846   
    
