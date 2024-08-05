@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+ <head>
+  <style>
+* {
+    background-color: black;
+    color: #00dd00;
+    font-family: "Courier New";
+    font-size: 100%;
+}
+
+body {
+    margin-left: 2%
+}
+
+input {
+    border: none;
+    width: 90%;
+}
+
+input:focus {
+    outline: none;
+}
+
+  </style>
+ </head>
+ <body>
+ </body>
+  <script>
+
+const body = document.body;
+
+function print(text, color=null) {
+    let toWrite = text.replace('\n','<br>');
+    if (color) toWrite = "<div style='color: " + color + ";'>" + toWrite + "</div>";
+    body.innerHTML += toWrite;
+}
+
+function execute() {
+    const inp = body.children[body.children.length-1];
+    const cmd = inp.value;
+    inp.remove();
+    body.appendChild(document.createTextNode(cmd));
+    body.innerHTML += "<br>";
+    
+    switch (cmd) {
+        case 'help':
+            print('help - Display help\n',color='yellow');
+            break;
+        case '':
+            break;
+        default:
+            print('Command not found.\n', color='red');
+            break;
+    }
+    
+    body.innerHTML += "$ <input autofocus onkeydown=\"if (event.key=='Enter') {execute();}\"></input>";
+    body.children[body.children.length-1].focus();
+}
+
+const messages = [
+    'Booting up... ',
+    '====','============','======','=================','=<br>',
+    'Doing various complicated stuff...<br>',
+    '<div style="color: orange;">[WARNING] User who created this shell might be stupid</div>',
+    'Loading shell...<br>',
+];
+
+const delays = [0,
+    500,
+    100,520,230,625,721,
+    500,100,700
+];
+
+var timedMsgIndex = 0;
+function timedMessage() {
+    setTimeout(() => {
+        if (timedMsgIndex >= messages.length) {
+            body.innerHTML = " \
+            <b>CrADOS v0.1 (C) Aberlure Technologies</b><br> \
+            Type \"help\" for help.<br> \
+            $ <input autofocus onkeydown=\"if (event.key=='Enter') {execute();}\"></input>";
+            body.children[body.children.length-1].focus();
+            return;
+        }
+        body.innerHTML += messages[timedMsgIndex];
+        timedMsgIndex++;
+        timedMessage();
+    }, delays[timedMsgIndex]);
+}
+
+timedMessage()
+
+
+</script>
+</html>
