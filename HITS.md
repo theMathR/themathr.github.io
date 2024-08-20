@@ -46,11 +46,13 @@ Damage: 0
 Do you continue looking at your person?  
 > Check inventory  
   
-| Dirty water 4 | Dirty water 4 |  |  |  |  
-| Dirty water 4 | Dirty water 4 |  |  |  |  
-| Old food 2 | Old food 2 |  |  |  |  
-| Old food 2 | Old food 2 |  |  |  |  
-|  |  |  |  |  |  
+|  |  | Inventory |  |  |
+| -- | -- | -- | -- | -- |
+| Dirty water 4 | Dirty water 4 |  |  |  |
+| Dirty water 4 | Dirty water 4 |  |  |  |
+| Old food 2 | Old food 2 |  |  |  |
+| Old food 2 | Old food 2 |  |  |  |
+|  |  |  |  |  |
 > Do not eat the bottle  
   
   
@@ -119,11 +121,13 @@ You open the right room using the key. It unlocks
 You open the door as see a timeless room if not for the mold and the spiders. It looks quite pleasant here like life was back to normal. Checking the room out you can find a wardrobe full of clothes that you may need and some valuables around here.  
 > Take it all and examine  
   
-| Dirty water 5 | Dirty water 5 | Bottle of slime | Screwdriver | Screwdriver |  
-| Dirty water 5 | Dirty water 5 | Pocket watch | Phone 1 | Phone 1 |  
-| Old food 4 | Old food 5 |  |  |  |  
-| Old food 4 | Old food 5 |  |  |  |  
-|  |  |  |  |  |  
+|  |  | Inventory |  |  |
+| -- | -- | -- | -- | -- |
+| Dirty water 5 | Dirty water 5 | Bottle of slime | Screwdriver | Screwdriver |
+| Dirty water 5 | Dirty water 5 | Pocket watch | Phone 1 | Phone 1 |
+| Old food 4 | Old food 5 |  |  |  |
+| Old food 4 | Old food 5 |  |  |  |
+|  |  |  |  |  |
 ```
 A broken pocket watch - It seems to be a regular wristwatch without the straps. It is also cracked and the time seems to be off. Luckily you can always rewind it.  
 Phones - Maybe you can turn it on to see a password lock if you are lucky   
@@ -333,11 +337,13 @@ You couldn't find anyone here. You punch your shadow but it wasn't trying to hur
 You felt crazy and paranoid doing that. You lost sanity  
 Reality and delusions are starting to bleed together. What's the plan?  
   
-| Dirty water 4 | Dirty water 4 | Bottle of slime | Screwdriver | Screwdriver |  
-| Dirty water 4 | Dirty water 4 | Pocket watch | Phone 1 | Phone 1 |  
-| Old food 4 | Old food 5 | Battery 1 | Dull knife | Dull knife |  
-| Old food 4 | Old food 5 |  |  |  |  
-|  |  |  |  |  |  
+|  |  | Inventory |  |  |
+| -- | -- | -- | -- | -- |
+| Dirty water 4 | Dirty water 4 | Bottle of slime | Screwdriver | Screwdriver |
+| Dirty water 4 | Dirty water 4 | Pocket watch | Phone 1 | Phone 1 |
+| Old food 4 | Old food 5 | Battery 1 | Dull knife | Dull knife |
+| Old food 4 | Old food 5 |  |  |  |
+|  |  |  |  |  |
 ```
   
 Goat-man Bread Bigbootytootie 4th  
@@ -518,10 +524,9 @@ HP maxed out
 > nom  
   
 Hunter slowly fades away  
-~"See ya later..."~  
+<sub>"See ya later..."</sub>  
 +3 sanity  
   
   
   
   
-
