@@ -27,7 +27,8 @@ input:focus {
  </body>
  <script>
 const version = '0.2';
- 
+const user_agent = window.navigator.userAgent;
+
 const filesystem = {
     'name': '',
     'type': 'directory',
@@ -109,6 +110,7 @@ path = current_path+"/"+path.join("/");\
 if (!create_file("directory",name,{},path)) print("Could not create directory.", "red")\
 }', '/cmd');
 create_file('command', 'about', '(args)=>{print("<b>CrADOS - the Crappy And Disappointing Operating System</b>", "lime");print("Version ' + version + ' - Copyright Aberlure Technologies 1970-20254¨£%R4G5Vsf34T\\nThis system contains no secret.\\n");}', '/cmd');
+create_file('command', 'get_useragent', '(args)=>{print(user_agent, "lime")};', '/cmd');
 
 let current_path = '/';
 
