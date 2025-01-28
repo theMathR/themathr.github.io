@@ -26,8 +26,10 @@ input:focus {
  <body>
  </body>
  <script>
-const version = '0.2';
+const version = '0.2-2';
 const user_agent = window.navigator.userAgent;
+
+
 
 const filesystem = {
     'name': '',
@@ -81,6 +83,15 @@ function get_path(file) {
     return '/' + path;
 }
 
+function get_time() {
+    let date = new Date();
+    return date.getDay() + ' ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '.' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + date.getMilliseconds();
+}
+
+function get_full_uname() {
+    return 'CrADOS ' + get_time() + ' +0000' + 'x69_64 C-CoreUtils + CrADOS';
+}
+
 create_file('directory', 'cmd', {}, '/');
 create_file('text', 'README', 'how can you read that?', '/');
 create_file('command', 'help', '(args)=>{print("help - Shows help\\necho - Repeat arguments\\nls - Look at directory content\\ncd - Move between directoires\\nmkdir - Create a directory\\n about - Return information about the system","yellow");}', '/cmd');
@@ -111,6 +122,16 @@ if (!create_file("directory",name,{},path)) print("Could not create directory.",
 }', '/cmd');
 create_file('command', 'about', '(args)=>{print("<b>CrADOS - the Crappy And Disappointing Operating System</b>", "lime");print("Version ' + version + ' - Copyright Aberlure Technologies 1970-20254¨£%R4G5Vsf34T\\nThis system contains no secret.\\n");}', '/cmd');
 create_file('command', 'get_useragent', '(args)=>{print(user_agent, "lime")};', '/cmd');
+
+// cerruhh's coreutil commands
+create_file('command', 'whoami', '(args)=>{print("WORKGROUP/guest", "white")};', '/cmd')
+create_file('command', 'uname', '(args)=>{print(get_full_uname(), "white")};', '/cmd')
+create_file('command', 'date', '(args)=>{print(get_time() + " +0000", "white")};', '/cmd')
+create_file('command', 'pwd', '(args)=>{print(current_path, "white")};', '/cmd')
+// create_file('command', 'pkgman', '(args)=>{\
+// if (args[1] == "update" and args[2] == "--details"){print("Failed to connect to crs://packs.crados.os/packages/packagecheck", "white");};\
+// if (args[1] == "update"){print("Connection failed, exiting", "white");}',
+// '/cmd')
 
 let current_path = '/';
 
@@ -156,12 +177,15 @@ const messages = [
     'Doing various complicated stuff...<br>',
     '<div style="color: orange;">[WARNING] User who created this shell might be stupid</div>',
     'Loading shell...<br>',
+    '<div style="color: green;">[OK] Loaded coreutils</div><br>',
+    '<div style="color: orange;">[WARN] No pkgman repositories loaded!</div><br>'
 ];
 
 const delays = [0,
     500,
     100,520,230,721,50,
-    500,100,700
+    500,100,700,
+    30,700
 ];
 
 var timedMsgIndex = 0;
