@@ -92,6 +92,10 @@ function get_full_uname() {
     return 'CrADOS ' + get_time() + ' +0000' + 'x69_64 C-CoreUtils + CrADOS';
 }
 
+function set_font_size(font_size) {
+ document.body.style.fontSize = font_size + '%';
+}
+
 create_file('directory', 'cmd', {}, '/');
 create_file('text', 'README', 'how can you read that?', '/');
 create_file('command', 'help', '(args)=>{print("help - Shows help\\necho - Repeat arguments\\nls - Look at directory content\\ncd - Move between directoires\\nmkdir - Create a directory\\n about - Return information about the system","yellow");}', '/cmd');
@@ -133,6 +137,19 @@ create_file('command', 'pwd', '(args)=>{print(current_path, "white")};', '/cmd')
 // if (args[1] == "update"){print("Connection failed, exiting", "white");}',
 // '/cmd')
 
+
+// shellutils
+create_file('command', 'fontsize', '(args)=>{\
+if (args[1] == undefined){return;};\
+if (args[1] == "help"){print("CrAOS Fontsize \
+Change font size to percentage given\
+Usage: fontsize SIZE [ARGUMENTS...]   Change the font size\
+       fontsize help                Display this help and exit\
+", "white");};\
+set_font_size(args[1]);\
+}', '/cmd')
+create_file('command', 'clear', '(args)=>{clear();}', '/cmd')
+
 let current_path = '/';
 
 const body = document.body;
@@ -149,6 +166,10 @@ function print(text, color=null) {
     let toWrite = text.replaceAll('\n','<br>');
     if (color) toWrite = "<div style='color: " + color + ";'>" + toWrite + "</div>";
     body.innerHTML += toWrite;
+}
+
+function clear() {
+    body.innerHTML = "";
 }
 
 function execute() {
