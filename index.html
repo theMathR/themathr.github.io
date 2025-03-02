@@ -2,12 +2,8 @@
 <html>
  <head>
   <title>MathR's website</title>
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-h1 {
-  margin: 0px;
-}
-
 @keyframes deltarune-bg {
   from {background-position: 0px 0px;}
   to {background-position: 40px 40px;}
@@ -26,25 +22,19 @@ body {
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  
+  display: grid;
+  gap: 15px 15px;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-#margin {
- /*margin: 25px 100px 25px 100px;*/
- display: flex;
- flex-direction: column;
-}
-
-#box {
+.box {
  background: black;
  padding: 10px 20px 10px 20px;
  border: 5px solid white;
- margin: 15px 15px 15px 15px;
+ margin-right: 10px;
  box-shadow: 10px 10px #050;
-}
-
-#horizontal {
- display: flex;
- flex-direction: row;
+ grid-column: 1 / 4;
 }
 
 a:link {
@@ -62,31 +52,35 @@ a:hover {
 a:active {
   color: #fff;
 }
+
+img {
+ 
+}
+
+h1 {
+  margin: 0px;
+}
   </style>
  </head>
  <body>
-  <div id="margin">
   
-   <div id="horizontal">
-    <div id="box" style="flex-grow: 6">
-     <h1>MathR's tiny website</h1>
-     Last updated 02/03/2025 (i use DD/MM/YYYY)
-    </div>
+  <div class="box" style="grid-column-end: 3">
+    <h1>MathR's tiny website</h1>
+    Last updated 02/03/2025 (i use DD/MM/YYYY)
+  </div>
     
-    <div id="box" style="flex-grow: 1">
-      <b>Discord:</b> @mathr. <br>
-      <b>GitHub:</b> <a href="https://github.com/theMathR/">theMathR</a> <br>
-     <img src="https://themathr.github.io/nubert_blinkie.gif" alt="Nubert blinkie">
-    </div>
-   </div>
+  <div class="box" style="grid-column-start: 3">
+    <b>Discord:</b> @mathr. <br>
+    <b>GitHub:</b> <a href="https://github.com/theMathR/">theMathR</a> <br>
+    <img src="https://themathr.github.io/nubert_blinkie.gif" alt="Nubert blinkie">
+  </div>
   
-   <div id="box">
+   <div class="box">
     02/03/2025
 <pre>hello people
 making a website for fun
 may yap here when i'm bored</pre>
    </div>
    
-  </div>
  </body>
 </html>
