@@ -53,23 +53,24 @@ a:active {
   color: #fff;
 }
 
-img {
- 
-}
-
 h1 {
   margin: 0px;
+}
+
+@media only screen and (min-width: 600px) {
+ .title{grid-column-end: 3;}
+ .infos{grid-column-start: 3;}
 }
   </style>
  </head>
  <body>
   
-  <div class="box" style="grid-column-end: 3">
+  <div class="box" id="title">
     <h1>MathR's tiny website</h1>
     Last updated 02/03/2025 (i use DD/MM/YYYY)
   </div>
     
-  <div class="box" style="grid-column-start: 3">
+  <div class="box" id="infos">
     <b>Discord:</b> @mathr. <br>
     <b>GitHub:</b> <a href="https://github.com/theMathR/">theMathR</a> <br>
     <img src="https://themathr.github.io/nubert_blinkie.gif" alt="Nubert blinkie">
