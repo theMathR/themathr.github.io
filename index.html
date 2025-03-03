@@ -16,8 +16,8 @@ body {
   background-size: 40px 40px;
   background-color: black;
   background-image:
-    linear-gradient(to right, #0c0 1px, transparent 1px),
-    linear-gradient(to bottom, #0c0 1px, transparent 1px);
+    linear-gradient(to right, #0c0 2px, transparent 1px),
+    linear-gradient(to bottom, #0c0 2px, transparent 1px);
   animation-name: deltarune-bg;
   animation-duration: 5s;
   animation-iteration-count: infinite;
@@ -25,7 +25,7 @@ body {
   
   display: grid;
   gap: 15px 15px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
 }
 
 .box {
@@ -34,7 +34,7 @@ body {
  border: 5px solid white;
  margin-right: 10px;
  box-shadow: 10px 10px #050;
- grid-column: 1 / 4;
+ grid-column: 1 / 3;
 }
 
 a:link {
@@ -58,8 +58,8 @@ h1 {
 }
 
 @media only screen and (min-width: 600px) {
- #title{grid-column-end: 3;}
- #infos{grid-column-start: 3;}
+ #title{grid-column-end: 2;}
+ #infos{grid-column-start: 2;}
 }
 
   </style>
@@ -68,13 +68,12 @@ h1 {
   
   <div class="box" id="title">
     <h1>MathR's tiny website</h1>
-    Last updated 02/03/2025 (i use DD/MM/YYYY)
+    Last updated 03/03/2025 (i use DD/MM/YYYY)
   </div>
     
   <div class="box" id="infos">
-    <b>Discord:</b> @mathr. <br>
-    <b>GitHub:</b> <a href="https://github.com/theMathR/">theMathR</a> <br>
-    <img src="https://themathr.github.io/nubert_blinkie.gif" alt="Nubert blinkie">
+    <b>Discord:</b> @mathr. | <b>GitHub:</b> <a href="https://github.com/theMathR/">theMathR</a> | <b>Itch.io:</b> <a href="https://mathr.itch.io/">MathR</a><br>
+    <img src="https://themathr.github.io/nubert_blinkie.gif" alt="Nubert blinkie" style="image-rendering: pixelated;">
   </div>
   
    <div class="box">
@@ -83,6 +82,10 @@ h1 {
 making a website for fun
 may yap here when i'm bored</pre>
    </div>
-   
+  
+   <div class="box">
+    <iframe src="https://themathr.github.io/terminal" title="CRaDOS terminal" style="height: 100%; width: 100%; border: none;"></iframe>
+   </div>
+  
  </body>
 </html>
