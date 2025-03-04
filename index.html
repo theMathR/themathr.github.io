@@ -2,11 +2,18 @@
 <html>
  <head>
   <title>MathR's website</title>
+  <link rel="icon" type="image/x-icon" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+
 @keyframes deltarune-bg {
-  from {background-position: 0px 0px;}
-  to {background-position: 40px 40px;}
+  0% {background-position: 0px 0px;}
+  17% {background-position: 40px 40px;}
+  34% {background-position: 0px 80px;}
+  50% {background-position: 40px 120px;}
+  66% {background-position: 0px 160px;}
+  83% {background-position: -40px 120px;}
+  100% {background-position: 0px 80px;}
 }
 
 body {
@@ -19,7 +26,7 @@ body {
     linear-gradient(to right, #0c0 2px, transparent 1px),
     linear-gradient(to bottom, #0c0 2px, transparent 1px);
   animation-name: deltarune-bg;
-  animation-duration: 5s;
+  animation-duration: 16s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   
@@ -62,18 +69,27 @@ h1 {
  #infos{grid-column-start: 2;}
 }
 
+img {
+ image-rendering: pixelated;
+}
+
   </style>
  </head>
  <body>
   
-  <div class="box" id="title">
-    <h1>MathR's tiny website</h1>
-    Last updated 03/03/2025 (i use DD/MM/YYYY)
+  <div class="box" id="title" style="display: flex; justify-content: space-between;">
+    <div>
+     <h1>MathR's tiny website</h1>
+     Last updated 04/03/2025 (i use DD/MM/YYYY)
+    </div>
+    <img src="pfp.png" alt="MathR" style="height: 64px; border: 3px solid white;">
   </div>
     
-  <div class="box" id="infos">
-    <b>Discord:</b> @mathr. | <b>GitHub:</b> <a href="https://github.com/theMathR/">theMathR</a> | <b>Itch.io:</b> <a href="https://mathr.itch.io/">MathR</a><br>
-    <img src="https://themathr.github.io/nubert_blinkie.gif" alt="Nubert blinkie" style="image-rendering: pixelated;">
+  <div class="box" id="infos" style="display: flex; flex-wrap: wrap;">
+    <div style="margin: 0px 10px 0px 10px"><b>Discord:</b> @mathr. </div>
+    <div style="margin: 0px 10px 0px 10px"><b>GitHub:</b> <a href="https://github.com/theMathR/">theMathR</a> </div>
+    <div style="margin: 0px 10px 0px 10px"><b>Itch.io:</b> <a href="https://mathr.itch.io/">MathR</a> </div>
+    <div style="margin: 0px 10px 0px 10px"><img src="nubert_blinkie.gif" alt="Nubert blinkie"> </div>
   </div>
   
    <div class="box">
