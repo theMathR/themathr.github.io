@@ -29,7 +29,8 @@ input:focus {
 const version = '0.2-2';
 const user_agent = window.navigator.userAgent;
 
-
+// webterm rem
+let echo_enabled = true
 
 const filesystem = {
     'name': '',
@@ -48,6 +49,11 @@ function create_file(type, name, content, path) {
         'parent': parent
     };
     return true;
+}
+
+function create_cmd(name, func) {
+    create_file('command', name, func, "/cmd");
+    return true
 }
 
 function split(str, sep) {
@@ -100,55 +106,167 @@ create_file('directory', 'cmd', {}, '/');
 create_file('text', 'README', 'how can you read that?', '/');
 create_file('command', 'help', '(args)=>{print("help - Shows help\\necho - Repeat arguments\\nls - Look at directory content\\ncd - Move between directoires\\nmkdir - Create a directory\\n about - Return information about the system","yellow");}', '/cmd');
 create_file('command', 'echo', '(args)=>{args.shift();print(args.join(" "), "white");}', '/cmd');
-create_file('command', 'ls', '(args)=>{\
-let path = args[1];\
-if (!path) path = current_path;\
-let directory = get_file(path);\
-if (!directory) {print("This directory doesn\'t exist.","red");return;}\
-if (directory.type != "directory") {print("This target is not a directory.","red");return;}\
-Object.entries(directory.content).forEach(([k, v]) => {print(k+"\\n", v.type=="directory"?"cyan":"white")});\
-}', '/cmd');
-create_file('command', 'cd', '(args)=>{\
-let path = args[1];\
-if (!path) {current_path="/";return;}\
-let directory = get_file(current_path + "/" + path);\
-if (!directory){print("This directory doesn\'t exist.","red");return;}\
-if (directory.type != "directory") {print("This target is not a directory.","red");return;}\
-current_path=get_path(directory);\
-}', '/cmd');
-create_file('command', 'mkdir', '(args)=>{\
-let path = args[1];\
-if (!path) return;\
-path = split(path, "/");\
-let name = path.pop();\
-path = current_path+"/"+path.join("/");\
-if (!create_file("directory",name,{},path)) print("Could not create directory.", "red")\
-}', '/cmd');
-create_file('command', 'about', '(args)=>{print("<b>CrADOS - the Crappy And Disappointing Operating System</b>", "lime");print("Version ' + version + ' - Copyright Aberlure Technologies 1970-20254¨£%R4G5Vsf34T\\nThis system contains no secret.\\n");}', '/cmd');
-create_file('command', 'get_useragent', '(args)=>{print(user_agent, "lime")};', '/cmd');
+
+
+
+// create_file('command', 'ls', '(args)=>{\
+// let path = args[1];\
+// if (!path) path = current_path;\
+// let directory = get_file(path);\
+// if (!directory) {print("This directory doesn\'t exist.","red");return;}\
+// if (directory.type != "directory") {print("This target is not a directory.","red");return;}\
+// Object.entries(directory.content).forEach(([k, v]) => {print(k+"\\n", v.type=="directory"?"cyan":"white")});\
+// }', '/cmd');
+
+// COMMANDS_ALL_FUNCS
+// LS
+function list_files(args) {
+ let path = args[1];
+ if (!path) path = current_path;
+ let directory = get_file(path);
+ if (!directory) {print("This directory doesn't exist.","red");return;}
+ if (directory.type != "directory") {print("This target is not a directory.","red");return;}
+ Object.entries(directory.content).forEach(([k, v]) => {print(k+"\n", v.type=="directory"?"cyan":"white")});
+}
+
+function chdir(args) {
+ let path = args[1];
+ if (!path) {current_path="/";return;}
+ let directory = get_file(current_path + "/" + path);
+ if (!directory){print("This directory doesn't exist.","red");return;}
+ if (directory.type !== "directory") {print("This target is not a directory.","red");return;}
+ current_path=get_path(directory);
+}
+
+function mkdir(args) {
+ let path = args[1];
+ if (!path) return;
+ path = split(path, "/");
+ let name = path.pop();
+ path = current_path+"/"+path.join("/");
+ if (!create_file("directory",name,{},path)) print("Could not create directory.", "red")
+}
+
+function about_crados(args) {
+ print("<b>CrADOS - the Crappy And Disappointing Operating System</b>", "lime");
+ print("Version ' + version + ' - Copyright Aberlure Technologies 1970-20254¨£%R4G5Vsf34T\\nThis system contains no secret.\\n");
+}
+
+function get_useragent(args) {
+ print(user_agent, "lime");
+}
+
+function whoami(args) {
+ print("WORKGROUP/guest", "white");
+}
+
+function uname_bin(args) {
+ print(get_full_uname(), "white")
+}
+
+function date_bin(args) {
+ print(get_time() + " +0000", "white")
+}
+
+function print_working_dir(args) {
+ print(current_path, "white")
+}
+
+function shell_bin(args) {
+ if (args[1] === "fontsize") {
+   if (args[2] === undefined) {
+    print("fontsize not specified!", "red");
+    return false;
+   }
+   set_font_size(args[2]);
+   return true;
+ }
+ if (args[1] === "clear") {
+  clear();
+  return true;
+ }
+ if (args[1] === "input") {
+  if (args[2] === "1") {
+   echo_enabled = true;
+   return true
+  }
+  if (args[2] === "0") {
+   echo_enabled = false;
+   return true
+  }
+  print("invalid echo value", "red");
+  return false;
+ }
+}
+
+function bin_create_file(args) {
+ // function create_file(type, name, content, path) {
+ if (args[1] === "/?") {
+  print("fnew command structure\n", "white");
+  print("fnew FILE_CONTENT FILE_NAME FILE_PATH\n");
+  return 1
+ }
+
+ if (args[1] !== undefined && args[2] !== undefined && args[3] !== undefined) {
+  create_file("text", args[2], args[1], args[3]);
+  print("file operation completed successfully!", "white");
+  return 1;
+ } else {
+  print("Not all args filled!")
+ }
+}
+
+function bin_read_file(args) {
+ if (args[1] !== undefined) {
+
+  let read_path = args[1]
+  if (args[1] !== "/") {
+   read_path = current_path + read_path
+  }
+
+  let readopen = get_file(read_path)
+  if (readopen === undefined) {
+   print("File not found", "red")
+   return false
+  }
+
+
+  console.log(readopen.content.toString())
+  print(readopen.content.toString(), "white")
+  if (args[2] === "/A") {
+   print("\n")
+   print("File opened at location " + current_path + args[1] + "\n", "white")
+   print("File type: " + readopen.type + "\n", "white")
+   print("File name: " + readopen.name + "\n", "white")
+  }
+
+  return true
+ }
+}
+
+create_cmd("ls", list_files);
+create_cmd("cd", chdir);
+create_cmd("mkdir", mkdir);
+create_cmd("about", about_crados);
+create_cmd("get_useragent", get_useragent);
+
 
 // cerruhh's coreutil commands
-create_file('command', 'whoami', '(args)=>{print("WORKGROUP/guest", "white")};', '/cmd')
-create_file('command', 'uname', '(args)=>{print(get_full_uname(), "white")};', '/cmd')
-create_file('command', 'date', '(args)=>{print(get_time() + " +0000", "white")};', '/cmd')
-create_file('command', 'pwd', '(args)=>{print(current_path, "white")};', '/cmd')
+create_cmd("whoami", whoami);
+create_cmd("uname", uname_bin);
+create_cmd("date", date_bin);
+create_cmd("pwd", print_working_dir);
+
+// file utils
+create_cmd("fnew", bin_create_file);
+create_cmd("fread", bin_read_file);
+
 // create_file('command', 'pkgman', '(args)=>{\
 // if (args[1] == "update" and args[2] == "--details"){print("Failed to connect to crs://packs.crados.os/packages/packagecheck", "white");};\
 // if (args[1] == "update"){print("Connection failed, exiting", "white");}',
 // '/cmd')
 
-
-// shellutils
-create_file('command', 'fontsize', '(args)=>{\
-if (args[1] == undefined){return;};\
-if (args[1] == "help"){print("CrAOS Fontsize \
-Change font size to percentage given\
-Usage: fontsize SIZE [ARGUMENTS...]   Change the font size\
-       fontsize help                Display this help and exit\
-", "white");};\
-set_font_size(args[1]);\
-}', '/cmd')
-create_file('command', 'clear', '(args)=>{clear();}', '/cmd')
+create_cmd("shell", shell_bin);
 
 let current_path = '/';
 
@@ -187,7 +305,7 @@ function execute() {
     } else {
         print('Command not found.', 'red');
     }
-    
+
     body.innerHTML += current_path + input;
     focus();
 }
