@@ -26,7 +26,7 @@ input:focus {
  <body>
  </body>
  <script>
-const version = '0.2-2';
+const version = '0.3-1';
 const user_agent = window.navigator.userAgent;
 
 // webterm rem
@@ -149,7 +149,7 @@ function mkdir(args) {
 
 function about_crados(args) {
  print("<b>CrADOS - the Crappy And Disappointing Operating System</b>", "lime");
- print("Version ' + version + ' - Copyright Aberlure Technologies 1970-20254¨£%R4G5Vsf34T\\nThis system contains no secret.\\n");
+ print('Version ' + version + ' - Copyright Aberlure Technologies 1970-20254¨£%R4G5Vsf34T\nThis system contains no secret.\n');
 }
 
 function get_useragent(args) {
@@ -208,8 +208,9 @@ function bin_create_file(args) {
  }
 
  if (args[1] !== undefined && args[2] !== undefined && args[3] !== undefined) {
-  create_file("text", args[2], args[1], args[3]);
-  print("file operation completed successfully!", "white");
+  let file = create_file("text", args[2], args[1], args[3]);
+  print("file created at location: " + args[3])
+  print("file operation completed successfully!\n", "white");
   return 1;
  } else {
   print("Not all args filled!")
@@ -293,14 +294,19 @@ function clear() {
 function execute() {
     const inp = body.children[body.children.length-1];
     const txt = inp.value;
+    let allow_eval = true
+    if (txt === "..") {
+     allow_eval = false
+    }
     if (!txt) return;
     inp.remove();
     body.appendChild(document.createTextNode(txt));
     body.innerHTML += "<br>";
     
     const cmd = split(txt.replaceAll(/\s+/g, ' '), ' ');
+
     let command = get_file('/cmd/'+cmd[0]);
-    if (command) {
+    if (command && allow_eval) {
         eval(command.content)(cmd);
     } else {
         print('Command not found.', 'red');
