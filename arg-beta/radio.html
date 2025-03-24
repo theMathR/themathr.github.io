@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+ <head>
+  <title>> You found a radio.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+body {
+  background-color: black;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.radio {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.knob {
+  position: absolute;
+  left: 495px;
+  top: 185px;
+}
+
+  </style>
+  <script>
+
+var turn = 0;
+
+setInterval(() => {
+  document.getElementById("knob").style.transform = `rotate(${turn%360}deg)`; 
+  turn += 20;
+}, 50);
+
+  </script>
+ </head>
+ <body>
+ 
+  <img class='radio' src='radio.png'>
+  <img style="" class='knob' id='knob' src='knob.png'>
+  
+ </body>
+</html>
