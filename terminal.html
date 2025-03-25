@@ -29,9 +29,14 @@
     const version = '0.3-1';
     const user_agent = window.navigator.userAgent;
 
-    // webterm rem
-    let echo_enabled = true
+    // Boot Flags
     const skip_boot_splash = false
+
+    // Memory
+    let echo_enabled = true
+    let input_char = "$"
+
+
 
     const filesystem = {
         'name': '',
@@ -45,7 +50,7 @@
             path = current_path;
         }
         parent = get_file(path);
-        if (!parent || parent.type != 'directory') return false;
+        if (!parent || parent.type !== 'directory') return false;
         parent.content[name] = {
             'name': name,
             'type': type,
@@ -222,6 +227,16 @@
             print("invalid echo value", "red");
             return false;
         }
+        if (args[1] === "sic") {
+            if (args[2] === undefined) {
+                print("Invalid sic", "red");
+                return false;
+            }
+            input_char = args[2];
+            input = input_char + " <input id='inp' autofocus onkeydown=\"if (event.key=='Enter') {execute();}\"></input>";
+            print("Sic set to " + input_char, "white");
+            return true;
+        }
     }
 
     function bin_create_file(args) {
@@ -372,7 +387,7 @@
     let current_path = '/';
 
     const body = document.body;
-    const input = "$ <input id='inp' autofocus onkeydown=\"if (event.key=='Enter') {execute();}\"></input>";
+    let input = input_char + " <input id='inp' autofocus onkeydown=\"if (event.key=='Enter') {execute();}\"></input>";
 
     function focus() {
         const inp = document.getElementById('inp');
