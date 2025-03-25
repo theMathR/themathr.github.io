@@ -41,6 +41,9 @@
     filesystem.parent = filesystem;
 
     function create_file(type, name, content, path) {
+        if (path === ".") {
+            path = current_path;
+        }
         parent = get_file(path);
         if (!parent || parent.type != 'directory') return false;
         parent.content[name] = {
@@ -235,7 +238,12 @@
                 print("File creation error.", "red");
                 return 2;
             }
-            print("file created at location: " + args[3]);
+            let fileloc = args[3]
+            if (args[3] === "" || args[3] === ".") {
+                fileloc = current_path
+            }
+
+            print("file created at location: " + fileloc);
             print("file operation completed successfully!\n", "white");
             return 1;
         } else {
@@ -311,7 +319,17 @@
     }
 
     function changetype(args) {
-        let file = get_file(args[1])
+        if (args[1] === undefined || args[2] === undefined) {
+            return false;
+        }
+        let file_path = args[1]
+        if (file_path.charAt(0) !== "/") {
+            file_path = current_path + "/" + args[1]
+        }
+
+
+
+        let file = get_file(file_path)
         if (file === undefined) {
             print("file not found.", "red");
             return false;
