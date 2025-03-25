@@ -129,6 +129,8 @@
 
     // COMMANDS_ALL_FUNCS
     // LS
+
+
     function list_files(args) {
         let path = args[1];
         if (!path) path = current_path;
@@ -136,6 +138,17 @@
         if (!directory) {print("This directory doesn't exist.","red");return;}
         if (directory.type !== "directory") {print("This target is not a directory.","red");return;}
         Object.entries(directory.content).forEach(([k, v]) => {print(k+"\n", v.type==="directory"?"cyan":"white")});
+    }
+
+    function verbose_list_files(args) {
+        let path = args[1];
+        if (!path) path = current_path;
+        let directory = get_file(path);
+        if (!directory) {print("This directory doesn't exist.","red");return;}
+        if (directory.type !== "directory") {print("This target is not a directory.","red");return;}
+        Object.entries(directory.content).forEach(([k, v]) => {
+            print(k+ " - " + v.type +"\n", v.type==="directory"?"cyan":"white")
+        });
     }
 
     function chdir(args) {
@@ -297,7 +310,22 @@
         }
     }
 
+    function changetype(args) {
+        let file = get_file(args[1])
+        if (file === undefined) {
+            print("file not found.", "red");
+            return false;
+        }
+
+        file.type = args[2];
+        print("File " + file.name + " is now of type " + args[2], "white");
+        return true;
+    }
+
     create_cmd("ls", list_files);
+
+    // specls
+    create_cmd("lsla", verbose_list_files);
     create_cmd("cd", chdir);
     create_cmd("mkdir", mkdir);
     create_cmd("about", about_crados);
@@ -314,6 +342,7 @@
     create_cmd("fnew", bin_create_file);
     create_cmd("fread", bin_read_file);
     create_cmd("fdel", fdel);
+    create_cmd("chtype", changetype);
 
     // create_file('command', 'pkgman', '(args)=>{\
     // if (args[1] == "update" and args[2] == "--details"){print("Failed to connect to crs://packs.crados.os/packages/packagecheck", "white");};\
