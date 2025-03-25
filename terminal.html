@@ -406,7 +406,7 @@
         const cmd = split(txt.replaceAll(/\s+/g, ' '), ' ');
 
         let command = get_file('/cmd/'+cmd[0]);
-        if (command && allow_eval) {
+        if (command && allow_eval && command.type === "command") {
             eval(command.content)(cmd);
         } else {
             print('Command not found.', 'red');
