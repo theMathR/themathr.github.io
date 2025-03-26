@@ -40,7 +40,7 @@
 
     let isString = value => typeof value === 'string';
 
-    const filesystem = {
+    let filesystem = {
         'name': '',
         'type': 'directory',
         'content': {}
@@ -324,7 +324,7 @@
 
             input_char = args[2];
             input = input_char + " <input id='inp' autofocus onkeydown=\"if (event.key=='Enter') {execute();}\"></input>";
-            print("Sic set to " + input_char, "white");
+            // print("Sic set to " + input_char, "white");
             return true;
         }
 
@@ -348,6 +348,7 @@
             shell_color = args[2]
             return true
         }
+        console.log(args)
     }
 
     function bin_create_file(args) {
@@ -512,7 +513,7 @@
             return true;
         }
 
-        if ("/nobootsplash" in args) {
+        if (args.includes("/nobootsplash")) {
             boot_flag = false;
         }
 
@@ -552,11 +553,16 @@
     }
 
     function load_from_diskimg(data) {
-        console.log(data)
+        console.log(data["shell"]["shell_sic"])
         // use shell
-        shell_bin(["sic", data["shell"]["shell_sic"]])
-        shell_bin(["color", data["shell"]["color"]])
-        print("Loaded!\n", "white")
+        shell_bin(["shell", "sic", data["shell"]["shell_sic"]])
+        shell_bin(["shell", "color", data["shell"]["color"]])
+
+        console.log(data["fs"]["content"])
+        console.log(filesystem.content)
+        filesystem.content = data["fs"]["content"]
+
+        console.log(filesystem.content)
     }
 
     create_cmd("ls", list_files);
