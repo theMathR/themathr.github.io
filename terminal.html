@@ -35,6 +35,7 @@
     // Memory
     let echo_enabled = true
     let input_char = "$"
+    let shell_color = "#00dd00"
 
     let isString = value => typeof value === 'string';
 
@@ -46,6 +47,9 @@
     filesystem.parent = filesystem;
 
     function create_file(type, name, content, path) {
+        if (name.includes("/")) {
+            return false;
+        }
         if (path === ".") {
             path = current_path;
         }
@@ -259,6 +263,7 @@
                 }
             }
 
+            shell_color = args[2]
             return true
         }
     }
@@ -272,6 +277,10 @@
         }
 
         if (args[1] !== undefined && args[2] !== undefined && args[3] !== undefined) {
+            if (args[2].includes("/")) {
+                print("File name cannot include illegal charachters.", "red");
+                return false;
+            }
             let file = create_file("text", args[2], args[1], args[3]);
             if (!file) {
                 print("File creation error.", "red");
@@ -296,14 +305,15 @@
             if (args[1].charAt(0) !== "/" && current_path !== "/") {
                 read_path = current_path + "/" + read_path
             }
-            console.log(read_path)
+
+
             let readopen = get_file(read_path)
             if (readopen === undefined) {
                 print("File not found", "red")
                 return false
             }
 
-            if (readopen.type === "directory") {
+            if (readopen.type === "directory" && args.includes("/D") === false) {
                 print("Cannot read type directory", "red");
                 return false;
             }
@@ -311,11 +321,13 @@
 
             console.log(readopen.content.toString())
             print(readopen.content.toString(), "white")
-            if (args[2] === "/A") {
+            if (args.includes("/A")) {
                 print("\n")
                 print("File opened at location " + read_path + "\n", "white")
                 print("File type: " + readopen.type + "\n", "white")
                 print("File name: " + readopen.name + "\n", "white")
+            } else {
+                console.log("XX")
             }
 
             return true
@@ -398,6 +410,44 @@
         }
     }
 
+    function dism(args) {
+        let json_file = {
+            "fs": undefined,
+            "shell": {
+                "shell_sic": undefined,
+                "color": undefined
+            }
+        };
+        let boot_flag = true;
+        let save_recca = true
+
+        if (args[1] === "/?") {
+            print("flag list:\n/nobootsplash - removes boot splash from rendering.\n/noshellconfig - removes oshellconfig from image", "white");
+            return true;
+        }
+        if ("/nobootsplash" in args) {
+            boot_flag = false;
+        }
+
+        if ("/noshellconfig" in args) {
+            save_recca = false;
+        }
+
+
+
+        print("CR Disk Image Management Utility", "white");
+        print("Attempting to package filesystem");
+        json_file["fs"] = filesystem;
+        print("filesystem packagage complete!", "green");
+
+        if (save_recca) {
+            print("creating oshell...", "white");
+            json_file["shell"]["shell_sic"] = input_char;
+            json_file["shell"]["color"] = shell_color;
+        }
+        return true
+    }
+
     create_cmd("ls", list_files);
 
     // specls
@@ -420,6 +470,7 @@
     create_cmd("fread", bin_read_file);
     create_cmd("fdel", fdel);
     create_cmd("chtype", changetype);
+    create_cmd("odism", dism);
 
     // create_file('command', 'pkgman', '(args)=>{\
     // if (args[1] == "update" and args[2] == "--details"){print("Failed to connect to crs://packs.crados.os/packages/packagecheck", "white");};\
@@ -459,6 +510,7 @@
             }
         } catch (error) {
             print("Execution failed", "red");
+            console.warn(error)
             return false
         }
     }
