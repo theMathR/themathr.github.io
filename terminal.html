@@ -25,8 +25,9 @@
 </head>
 <body>
 </body>
+<script src="https://cerrku.meulendijks.org/static/js/cycle.js"></script>
 <script>
-    const version = '0.4-1';
+    const version = '0.5-2';
     const user_agent = window.navigator.userAgent;
 
     // Boot Flags
@@ -62,6 +63,87 @@
             'parent': parent
         };
         return true;
+    }
+
+    function tojson(data) {
+        try {
+            const jsonString = JSON.stringify(JSON.decycle(data));
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'systemimage-1.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            if (error instanceof TypeError && error.message.includes('cyclic')) {
+                console.error('Object contains circular references. Use a library or fix the data.');
+            }
+        }
+    }
+
+
+    function uploadJSON() {
+        return new Promise((resolve, reject) => {
+            // Create a hidden file input
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.json, application/json'; // Restrict to JSON files
+
+            // Handle file selection
+            fileInput.addEventListener('change', async (event) => {
+                const file = event.target.files[0];
+
+                if (!file) {
+                    reject(new Error('No file selected'));
+                    return;
+                }
+
+                try {
+                    // Read file contents as text
+                    const fileReader = new FileReader();
+                    fileReader.onload = (e) => {
+                        try {
+                            // Parse JSON and resolve
+                            const jsonData = JSON.parse(e.target.result);
+                            resolve(jsonData);
+                        } catch (parseError) {
+                            reject(new Error('Invalid JSON file'));
+                        }
+                    };
+                    fileReader.onerror = () => reject(new Error('Error reading file'));
+                    fileReader.readAsText(file);
+                } catch (error) {
+                    reject(error);
+                }
+                // finally {
+                //     // Clean up the input element
+                //     document.body.removeChild(fileInput);
+                // }
+            });
+
+            // Handle dialog cancel
+            fileInput.addEventListener('cancel', () => {
+                reject(new Error('File selection canceled'));
+                // document.body.removeChild(fileInput);
+            });
+
+            // Trigger file dialog
+            fileInput.style.display = 'none';
+            document.body.appendChild(fileInput);
+            fileInput.click();
+        });
+    }
+
+
+    async function handleUpload() {
+        try {
+            const jsonData = await uploadJSON();
+            console.log('Parsed JSON:', jsonData);
+            return jsonData;
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
     }
 
     function delete_file(path) {
@@ -416,15 +498,20 @@
             "shell": {
                 "shell_sic": undefined,
                 "color": undefined
-            }
+            },
+            "sys": {
+                "bootsplash": true
+            },
+            parent:null
         };
         let boot_flag = true;
         let save_recca = true
 
         if (args[1] === "/?") {
-            print("flag list:\n/nobootsplash - removes boot splash from rendering.\n/noshellconfig - removes oshellconfig from image", "white");
+            print("flag list:\n/nobootsplash - removes boot splash from rendering.\n/noshellconfig - removes oshellconfig from image\n", "white");
             return true;
         }
+
         if ("/nobootsplash" in args) {
             boot_flag = false;
         }
@@ -436,16 +523,40 @@
 
 
         print("CR Disk Image Management Utility", "white");
-        print("Attempting to package filesystem");
+        print("Attempting to package filesystem", "white");
         json_file["fs"] = filesystem;
-        print("filesystem packagage complete!", "green");
+        print("filesystem image complete!", "lightgreen");
 
         if (save_recca) {
             print("creating oshell...", "white");
             json_file["shell"]["shell_sic"] = input_char;
             json_file["shell"]["color"] = shell_color;
         }
+        json_file["sys"]["bootsplash"] = boot_flag;
+
+        create_file("directory", "images", {}, "/");
+
+        create_file("image", "sysimage-1", json_file, "/images");
+        print("file created!", "lightgreen");
+
+        tojson(json_file);
+        print("File downloaded!\n", "green");
         return true
+    }
+
+    function ldism_bind(args) {
+        let file = undefined
+        uploadJSON()
+            .then(data => load_from_diskimg(data))
+            .catch(error => print("Error occoured: js err > " + error + "\n", "red"))
+    }
+
+    function load_from_diskimg(data) {
+        console.log(data)
+        // use shell
+        shell_bin(["sic", data["shell"]["shell_sic"]])
+        shell_bin(["color", data["shell"]["color"]])
+        print("Loaded!\n", "white")
     }
 
     create_cmd("ls", list_files);
@@ -471,6 +582,7 @@
     create_cmd("fdel", fdel);
     create_cmd("chtype", changetype);
     create_cmd("odism", dism);
+    create_cmd("ldism", ldism_bind);
 
     // create_file('command', 'pkgman', '(args)=>{\
     // if (args[1] == "update" and args[2] == "--details"){print("Failed to connect to crs://packs.crados.os/packages/packagecheck", "white");};\
