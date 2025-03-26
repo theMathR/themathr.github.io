@@ -1,231 +1,714 @@
 <!doctype html>
 <html>
- <head>
-  <style>
-* {
-    background-color: black;
-    color: #00dd00;
-    font-family: "Courier New";
-    font-size: 100%;
-}
+<head>
+    <style>
+        * {
+            background-color: black;
+            color: #00dd00;
+            font-family: "Courier New";
+            font-size: 100%;
+        }
 
-body {
-    margin-left: 2%
-}
+        body {
+            margin-left: 2%
+        }
 
-input {
-    border: none;
-    width: 90%;
-}
+        input {
+            border: none;
+            width: 90%;
+        }
 
-input:focus {
-    outline: none;
-}
-  </style>
- </head>
- <body>
- </body>
- <script>
-const version = '0.2-2';
-const user_agent = window.navigator.userAgent;
+        input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+</body>
+<script src="https://cerrku.meulendijks.org/static/js/cycle.js"></script>
+<script>
+    const version = '0.5-2';
+    const user_agent = window.navigator.userAgent;
 
+    // Boot Flags
+    const skip_boot_splash = false
 
+    // Memory
+    let echo_enabled = true
+    let input_char = "$"
+    let shell_color = "#00dd00"
 
-const filesystem = {
-    'name': '',
-    'type': 'directory',
-    'content': {}
-};
-filesystem.parent = filesystem;
+    let isString = value => typeof value === 'string';
 
-function create_file(type, name, content, path) {
-    parent = get_file(path);
-    if (!parent || parent.type != 'directory') return false;
-    parent.content[name] = {
-        'name': name,
-        'type': type,
-        'content': content,
-        'parent': parent
+    let filesystem = {
+        'name': '',
+        'type': 'directory',
+        'content': {}
     };
-    return true;
-}
+    filesystem.parent = filesystem;
 
-function split(str, sep) {
-    return str.split(sep); //TODO
-}
-
-function get_file(path) {
-    let cur = filesystem;
-    let err = false;
-    split(path, '/').forEach((v) => {
-        if (!v) return;
-        if (cur == undefined || cur.type != 'directory') {
-            err = true;
-            return;
+    function create_file(type, name, content, path) {
+        if (name.includes("/")) {
+            return false;
         }
-        if (v == '..') {
-            cur = cur.parent;
-        } else {
-            cur = cur.content[v];
+        if (path === ".") {
+            path = current_path;
         }
-    });
-    if (err) return undefined;
-    return cur;
-}
-
-function get_path(file) {
-    let path = file.name;
-    let cur = file.parent;
-    while (cur != filesystem) {
-        path = cur.name + '/' + path;
-        cur = cur.parent;
-    } 
-    return '/' + path;
-}
-
-function get_time() {
-    let date = new Date();
-    return date.getDay() + ' ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '.' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + date.getMilliseconds();
-}
-
-function get_full_uname() {
-    return 'CrADOS ' + get_time() + ' +0000' + 'x69_64 C-CoreUtils + CrADOS';
-}
-
-function set_font_size(font_size) {
- document.body.style.fontSize = font_size + '%';
-}
-
-create_file('directory', 'cmd', {}, '/');
-create_file('text', 'README', 'how can you read that?', '/');
-create_file('command', 'help', '(args)=>{print("help - Shows help\\necho - Repeat arguments\\nls - Look at directory content\\ncd - Move between directoires\\nmkdir - Create a directory\\n about - Return information about the system","yellow");}', '/cmd');
-create_file('command', 'echo', '(args)=>{args.shift();print(args.join(" "), "white");}', '/cmd');
-create_file('command', 'ls', '(args)=>{\
-let path = args[1];\
-if (!path) path = current_path;\
-let directory = get_file(path);\
-if (!directory) {print("This directory doesn\'t exist.","red");return;}\
-if (directory.type != "directory") {print("This target is not a directory.","red");return;}\
-Object.entries(directory.content).forEach(([k, v]) => {print(k+"\\n", v.type=="directory"?"cyan":"white")});\
-}', '/cmd');
-create_file('command', 'cd', '(args)=>{\
-let path = args[1];\
-if (!path) {current_path="/";return;}\
-let directory = get_file(current_path + "/" + path);\
-if (!directory){print("This directory doesn\'t exist.","red");return;}\
-if (directory.type != "directory") {print("This target is not a directory.","red");return;}\
-current_path=get_path(directory);\
-}', '/cmd');
-create_file('command', 'mkdir', '(args)=>{\
-let path = args[1];\
-if (!path) return;\
-path = split(path, "/");\
-let name = path.pop();\
-path = current_path+"/"+path.join("/");\
-if (!create_file("directory",name,{},path)) print("Could not create directory.", "red")\
-}', '/cmd');
-create_file('command', 'about', '(args)=>{print("<b>CrADOS - the Crappy And Disappointing Operating System</b>", "lime");print("Version ' + version + ' - Copyright Aberlure Technologies 1970-20254¨£%R4G5Vsf34T\\nThis system contains no secret.\\n");}', '/cmd');
-create_file('command', 'get_useragent', '(args)=>{print(user_agent, "lime")};', '/cmd');
-
-// cerruhh's coreutil commands
-create_file('command', 'whoami', '(args)=>{print("WORKGROUP/guest", "white")};', '/cmd')
-create_file('command', 'uname', '(args)=>{print(get_full_uname(), "white")};', '/cmd')
-create_file('command', 'date', '(args)=>{print(get_time() + " +0000", "white")};', '/cmd')
-create_file('command', 'pwd', '(args)=>{print(current_path, "white")};', '/cmd')
-// create_file('command', 'pkgman', '(args)=>{\
-// if (args[1] == "update" and args[2] == "--details"){print("Failed to connect to crs://packs.crados.os/packages/packagecheck", "white");};\
-// if (args[1] == "update"){print("Connection failed, exiting", "white");}',
-// '/cmd')
-
-
-// shellutils
-create_file('command', 'fontsize', '(args)=>{\
-if (args[1] == undefined){return;};\
-if (args[1] == "help"){print("CrAOS Fontsize \
-Change font size to percentage given\
-Usage: fontsize SIZE [ARGUMENTS...]   Change the font size\
-       fontsize help                Display this help and exit\
-", "white");};\
-set_font_size(args[1]);\
-}', '/cmd')
-create_file('command', 'clear', '(args)=>{clear();}', '/cmd')
-
-let current_path = '/';
-
-const body = document.body;
-const input = "$ <input id='inp' autofocus onkeydown=\"if (event.key=='Enter') {execute();}\"></input>";
-
-function focus() {
-    const inp = document.getElementById('inp');
-    if (!inp) return;
-    inp.focus();
-}
-window.onclick = focus;
-
-function print(text, color=null) {
-    let toWrite = text.replaceAll('\n','<br>');
-    if (color) toWrite = "<div style='color: " + color + ";'>" + toWrite + "</div>";
-    body.innerHTML += toWrite;
-}
-
-function clear() {
-    body.innerHTML = "";
-}
-
-function execute() {
-    const inp = body.children[body.children.length-1];
-    const txt = inp.value;
-    if (!txt) return;
-    inp.remove();
-    body.appendChild(document.createTextNode(txt));
-    body.innerHTML += "<br>";
-    
-    const cmd = split(txt.replaceAll(/\s+/g, ' '), ' ');
-    let command = get_file('/cmd/'+cmd[0]);
-    if (command) {
-        eval(command.content)(cmd);
-    } else {
-        print('Command not found.', 'red');
+        parent = get_file(path);
+        if (!parent || parent.type !== 'directory') return false;
+        parent.content[name] = {
+            'name': name,
+            'type': type,
+            'content': content,
+            'parent': parent
+        };
+        return true;
     }
-    
-    body.innerHTML += current_path + input;
-    focus();
-}
 
-const messages = [
-    'Booting up... ',
-    '====','============','======','=================','=<br>',
-    'Doing various complicated stuff...<br>',
-    '<div style="color: orange;">[WARNING] User who created this shell might be stupid</div>',
-    'Loading shell...<br>',
-    '<div style="color: green;">[OK] Loaded coreutils</div><br>',
-    '<div style="color: orange;">[WARN] No pkgman repositories loaded!</div><br>'
-];
+    function tojson(data) {
+        try {
+            const jsonString = JSON.stringify(JSON.decycle(data));
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'systemimage-1.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            if (error instanceof TypeError && error.message.includes('cyclic')) {
+                console.error('Object contains circular references. Use a library or fix the data.');
+            }
+        }
+    }
 
-const delays = [0,
-    500,
-    100,520,230,721,50,
-    500,100,700,
-    30,700
-];
 
-var timedMsgIndex = 0;
-function timedMessage() {
-    setTimeout(() => {
-        if (timedMsgIndex >= messages.length) {
-            body.innerHTML = " \
+    function uploadJSON() {
+        return new Promise((resolve, reject) => {
+            // Create a hidden file input
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.json, application/json'; // Restrict to JSON files
+
+            // Handle file selection
+            fileInput.addEventListener('change', async (event) => {
+                const file = event.target.files[0];
+
+                if (!file) {
+                    reject(new Error('No file selected'));
+                    return;
+                }
+
+                try {
+                    // Read file contents as text
+                    const fileReader = new FileReader();
+                    fileReader.onload = (e) => {
+                        try {
+                            // Parse JSON and resolve
+                            const jsonData = JSON.parse(e.target.result);
+                            resolve(jsonData);
+                        } catch (parseError) {
+                            reject(new Error('Invalid JSON file'));
+                        }
+                    };
+                    fileReader.onerror = () => reject(new Error('Error reading file'));
+                    fileReader.readAsText(file);
+                } catch (error) {
+                    reject(error);
+                }
+                // finally {
+                //     // Clean up the input element
+                //     document.body.removeChild(fileInput);
+                // }
+            });
+
+            // Handle dialog cancel
+            fileInput.addEventListener('cancel', () => {
+                reject(new Error('File selection canceled'));
+                // document.body.removeChild(fileInput);
+            });
+
+            // Trigger file dialog
+            fileInput.style.display = 'none';
+            document.body.appendChild(fileInput);
+            fileInput.click();
+        });
+    }
+
+
+    async function handleUpload() {
+        try {
+            const jsonData = await uploadJSON();
+            console.log('Parsed JSON:', jsonData);
+            return jsonData;
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
+    }
+
+    function delete_file(path) {
+        let file = get_file(path);
+        let parent = file.parent;
+        console.log(file.parent);
+        delete parent.content[file.name];
+        return true;
+    }
+
+    function create_cmd(name, func) {
+        create_file('command', name, func, "/cmd");
+        return true
+    }
+
+    function split(str, sep) {
+        return str.split(sep); //TODO
+    }
+
+    function get_file(path) {
+        let cur = filesystem;
+        let err = false;
+        split(path, '/').forEach((v) => {
+            if (!v) return;
+            if (cur == undefined || cur.type != 'directory') {
+                err = true;
+                return;
+            }
+            if (v == '..') {
+                cur = cur.parent;
+            } else {
+                cur = cur.content[v];
+            }
+        });
+        if (err) return undefined;
+        return cur;
+    }
+
+    function get_path(file) {
+        let path = file.name;
+        let cur = file.parent;
+        while (cur != filesystem) {
+            path = cur.name + '/' + path;
+            cur = cur.parent;
+        }
+        return '/' + path;
+    }
+
+    function get_time() {
+        let date = new Date();
+        return date.getDay() + ' ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '.' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + date.getMilliseconds();
+    }
+
+    function get_full_uname() {
+        return 'CrADOS ' + get_time() + ' +0000' + 'x69_64 C-CoreUtils + CrADOS';
+    }
+
+    function set_font_size(font_size) {
+        document.body.style.fontSize = font_size + '%';
+    }
+
+    create_file('directory', 'cmd', {}, '/');
+    create_file('text', 'README', 'how can you read that?', '/');
+    create_file('command', 'help', '(args)=>{print("help - Shows help\\necho - Repeat arguments\\nls - Look at directory content\\ncd - Move between directoires\\nmkdir - Create a directory\\n about - Return information about the system","yellow");}', '/cmd');
+    create_file('command', 'echo', '(args)=>{args.shift();print(args.join(" "), "white");}', '/cmd');
+
+
+
+    // create_file('command', 'ls', '(args)=>{\
+    // let path = args[1];\
+    // if (!path) path = current_path;\
+    // let directory = get_file(path);\
+    // if (!directory) {print("This directory doesn\'t exist.","red");return;}\
+    // if (directory.type != "directory") {print("This target is not a directory.","red");return;}\
+    // Object.entries(directory.content).forEach(([k, v]) => {print(k+"\\n", v.type=="directory"?"cyan":"white")});\
+    // }', '/cmd');
+
+    // COMMANDS_ALL_FUNCS
+    // LS
+
+
+    function list_files(args) {
+        let path = args[1];
+        if (!path) path = current_path;
+        let directory = get_file(path);
+        if (!directory) {print("This directory doesn't exist.","red");return;}
+        if (directory.type !== "directory") {print("This target is not a directory.","red");return;}
+        Object.entries(directory.content).forEach(([k, v]) => {print(k+"\n", v.type==="directory"?"cyan":"white")});
+    }
+
+    function verbose_list_files(args) {
+        let path = args[1];
+        if (!path) path = current_path;
+        let directory = get_file(path);
+        if (!directory) {print("This directory doesn't exist.","red");return;}
+        if (directory.type !== "directory") {print("This target is not a directory.","red");return;}
+        Object.entries(directory.content).forEach(([k, v]) => {
+            print(k+ " - " + v.type +"\n", v.type==="directory"?"cyan":"white")
+        });
+    }
+
+    function chdir(args) {
+        let path = args[1];
+        if (!path) {current_path="/";return;}
+        let directory = get_file(current_path + "/" + path);
+        if (!directory){print("This directory doesn't exist.","red");return;}
+        if (directory.type !== "directory") {print("This target is not a directory.","red");return;}
+        current_path=get_path(directory);
+    }
+
+    function mkdir(args) {
+        let path = args[1];
+        if (!path) return;
+        path = split(path, "/");
+        let name = path.pop();
+        path = current_path+"/"+path.join("/");
+        if (!create_file("directory",name,{},path)) print("Could not create directory.", "red")
+    }
+
+    function about_crados(args) {
+        print("<b>CrADOS - the Crappy And Disappointing Operating System</b>", "lime");
+        print('Version ' + version + ' - Copyright Aberlure Technologies 1970-20254¨£%R4G5Vsf34T\nThis system contains no secret.\n');
+    }
+
+    function get_useragent(args) {
+        print(user_agent, "lime");
+    }
+
+    function whoami(args) {
+        print("WORKGROUP/guest", "white");
+    }
+
+    function uname_bin(args) {
+        print(get_full_uname(), "white")
+    }
+
+    function date_bin(args) {
+        print(get_time() + " +0000", "white")
+    }
+
+    function print_working_dir(args) {
+        print(current_path, "white")
+    }
+
+    function shell_bin(args) {
+        if (args[1] === "fontsize") {
+            if (args[2] === undefined) {
+                print("fontsize not specified!", "red");
+                return false;
+            }
+            set_font_size(args[2]);
+            return true;
+        }
+        if (args[1] === "clear") {
+            clear();
+            return true;
+        }
+        if (args[1] === "input") {
+            if (args[2] === "1") {
+                echo_enabled = true;
+                return true
+            }
+            if (args[2] === "0") {
+                echo_enabled = false;
+                return true
+            }
+            print("invalid echo value", "red");
+            return false;
+        }
+        if (args[1] === "sic") {
+            if (args[2] === undefined) {
+                print("Invalid sic", "red");
+                return false;
+            }
+            if (args[2] === "!empty") {
+                args[2] = ""
+            }
+
+            input_char = args[2];
+            input = input_char + " <input id='inp' autofocus onkeydown=\"if (event.key=='Enter') {execute();}\"></input>";
+            // print("Sic set to " + input_char, "white");
+            return true;
+        }
+
+        if (args[1] === "color") {
+            if (args[2] === undefined) {
+                print("Invalid color", "red");
+                return false
+            }
+
+            if (args[2] === "default" || args[2] === "def") {
+                args[2] = "#00dd00"
+            }
+            const stylesheet = document.styleSheets[0];
+            for (const rule of stylesheet.cssRules) {
+                if (rule.selectorText === '*') {
+                    rule.style.color = args[2];
+                    break;
+                }
+            }
+
+            shell_color = args[2]
+            return true
+        }
+        console.log(args)
+    }
+
+    function bin_create_file(args) {
+        // function create_file(type, name, content, path) {
+        if (args[1] === "/?") {
+            print("fnew command structure\n", "white");
+            print("fnew FILE_CONTENT FILE_NAME FILE_PATH\n");
+            return 1;
+        }
+
+        if (args[1] !== undefined && args[2] !== undefined && args[3] !== undefined) {
+            if (args[2].includes("/")) {
+                print("File name cannot include illegal charachters.", "red");
+                return false;
+            }
+            let file = create_file("text", args[2], args[1], args[3]);
+            if (!file) {
+                print("File creation error.", "red");
+                return 2;
+            }
+            let fileloc = args[3]
+            if (args[3] === "" || args[3] === ".") {
+                fileloc = current_path
+            }
+
+            print("file created at location: " + fileloc);
+            print("file operation completed successfully!\n", "white");
+            return 1;
+        } else {
+            print("Not all args filled!\n");
+        }
+    }
+
+    function bin_read_file(args) {
+        if (args[1] !== undefined) {
+            let read_path = args[1]
+            if (args[1].charAt(0) !== "/" && current_path !== "/") {
+                read_path = current_path + "/" + read_path
+            }
+
+
+            let readopen = get_file(read_path)
+            if (readopen === undefined) {
+                print("File not found", "red")
+                return false
+            }
+
+            if (readopen.type === "directory" && args.includes("/D") === false) {
+                print("Cannot read type directory", "red");
+                return false;
+            }
+
+
+            console.log(readopen.content.toString())
+            print(readopen.content.toString(), "white")
+            if (args.includes("/A")) {
+                print("\n")
+                print("File opened at location " + read_path + "\n", "white")
+                print("File type: " + readopen.type + "\n", "white")
+                print("File name: " + readopen.name + "\n", "white")
+            } else {
+                console.log("XX")
+            }
+
+            return true
+        }
+    }
+
+    function fdel(args) {
+        if (args[1] === "/?") {
+            print("Usage:\n", "white");
+            print("fdel FILEPATH");
+            return true;
+        }
+        if (args[1] === undefined) {
+            print("invalid path", "red");
+            return false
+        }
+        // let preserve_root = args[2] === "/NPR"
+        // if (preserve_root === false && get_file(args[1].charAt(0)) === "/") {
+        //     print("WARNING: Attempted to remove root!", "orange");
+        //     print("To del root, add /NPR to the command!", "white");
+        //     return false;
+        // }
+
+        if (args[1].charAt(0) !== "/") {
+            args[1] = current_path + "/" + args[1]
+        }
+
+        console.log(args[1])
+
+        let remove_file = get_file(args[1])
+        if (remove_file === undefined) {
+            print("file not found.", "red");
+            return false;
+        }
+        let file_action = delete_file(get_path(remove_file));
+
+        if (file_action === true) {
+            const fitype = remove_file.type.toString()
+            print("Successfully removed " + fitype + " " + remove_file.name, "white");
+            return true;
+        } else {
+            print("File error.", "red");
+            return false;
+        }
+    }
+
+    function changetype(args) {
+        if (args[1] === undefined || args[2] === undefined) {
+            return false;
+        }
+        let file_path = args[1]
+        if (file_path.charAt(0) !== "/") {
+            file_path = current_path + "/" + args[1]
+        }
+
+        let file = get_file(file_path)
+        if (file === undefined) {
+            print("file not found.", "red");
+            return false;
+        }
+
+        file.type = args[2];
+        print("File " + file.name + " is now of type " + args[2], "white");
+        return true;
+    }
+
+    function oshell(args) {
+        if (args[1] === "/?") {
+            print("cmd: send any command to system.", "white");
+            print("usage;\ncmd [COMMAND]");
+            print("Use !SP as spacechar!", "white");
+            return true
+        }
+
+        if (args[1] !== undefined) {
+            const finalfunc = args[1].replaceAll("!SP", " ")
+            eval(finalfunc)
+            print("\ncmd no crash!")
+            return true
+        }
+    }
+
+    function dism(args) {
+        let json_file = {
+            "fs": undefined,
+            "shell": {
+                "shell_sic": undefined,
+                "color": undefined
+            },
+            "sys": {
+                "bootsplash": true
+            },
+            parent:null
+        };
+        let boot_flag = true;
+        let save_recca = true
+
+        if (args[1] === "/?") {
+            print("flag list:\n/nobootsplash - removes boot splash from rendering.\n/noshellconfig - removes oshellconfig from image\n", "white");
+            return true;
+        }
+
+        if (args.includes("/nobootsplash")) {
+            boot_flag = false;
+        }
+
+        if ("/noshellconfig" in args) {
+            save_recca = false;
+        }
+
+
+
+        print("CR Disk Image Management Utility", "white");
+        print("Attempting to package filesystem", "white");
+        json_file["fs"] = filesystem;
+        print("filesystem image complete!", "lightgreen");
+
+        if (save_recca) {
+            print("creating oshell...", "white");
+            json_file["shell"]["shell_sic"] = input_char;
+            json_file["shell"]["color"] = shell_color;
+        }
+        json_file["sys"]["bootsplash"] = boot_flag;
+
+        create_file("directory", "images", {}, "/");
+
+        create_file("image", "sysimage-1", json_file, "/images");
+        print("file created!", "lightgreen");
+
+        tojson(json_file);
+        print("File downloaded!\n", "green");
+        return true
+    }
+
+    function ldism_bind(args) {
+        let file = undefined
+        uploadJSON()
+            .then(data => load_from_diskimg(data))
+            .catch(error => print("Error occoured: js err > " + error + "\n", "red"))
+    }
+
+    function load_from_diskimg(data) {
+        console.log(data["shell"]["shell_sic"])
+        // use shell
+        shell_bin(["shell", "sic", data["shell"]["shell_sic"]])
+        shell_bin(["shell", "color", data["shell"]["color"]])
+
+        console.log(data["fs"]["content"])
+        console.log(filesystem.content)
+        filesystem.content = data["fs"]["content"]
+
+        console.log(filesystem.content)
+    }
+
+    create_cmd("ls", list_files);
+
+    // specls
+    create_cmd("lsla", verbose_list_files);
+    create_cmd("cd", chdir);
+    create_cmd("mkdir", mkdir);
+    create_cmd("about", about_crados);
+    create_cmd("get_useragent", get_useragent);
+
+
+    // cerruhh's coreutil commands
+    create_cmd("whoami", whoami);
+    create_cmd("uname", uname_bin);
+    create_cmd("date", date_bin);
+    create_cmd("pwd", print_working_dir);
+    create_cmd("cmd", oshell);
+
+    // file utils
+    create_cmd("fnew", bin_create_file);
+    create_cmd("fread", bin_read_file);
+    create_cmd("fdel", fdel);
+    create_cmd("chtype", changetype);
+    create_cmd("odism", dism);
+    create_cmd("ldism", ldism_bind);
+
+    // create_file('command', 'pkgman', '(args)=>{\
+    // if (args[1] == "update" and args[2] == "--details"){print("Failed to connect to crs://packs.crados.os/packages/packagecheck", "white");};\
+    // if (args[1] == "update"){print("Connection failed, exiting", "white");}',
+    // '/cmd')
+
+    create_cmd("shell", shell_bin);
+
+    let current_path = '/';
+
+    const body = document.body;
+    let input = input_char + " <input id='inp' autofocus onkeydown=\"if (event.key=='Enter') {execute();}\"></input>";
+
+    function focus() {
+        const inp = document.getElementById('inp');
+        if (!inp) return;
+        inp.focus();
+    }
+    window.onclick = focus;
+
+    function print(text, color=null) {
+        let toWrite = text.replaceAll('\n','<br>');
+        if (color) toWrite = "<div style='color: " + color + ";'>" + toWrite + "</div>";
+        body.innerHTML += toWrite;
+    }
+
+    function clear() {
+        body.innerHTML = "";
+    }
+
+    function executeCommand(cmd, command) {
+        try {
+            const fn = eval(command.content); // Evaluate first
+            if (typeof fn === "function") {
+                fn(cmd); // Call if it's a function, strings don't work lol
+                return true
+            }
+        } catch (error) {
+            print("Execution failed", "red");
+            console.warn(error)
+            return false
+        }
+    }
+
+
+    function execute() {
+        const inp = body.children[body.children.length-1];
+        const txt = inp.value;
+        let allow_eval = true
+        if (txt === "..") {
+            allow_eval = false
+        }
+        if (!txt) return;
+        inp.remove();
+        body.appendChild(document.createTextNode(txt));
+        body.innerHTML += "<br>";
+
+        const cmd = split(txt.replaceAll(/\s+/g, ' '), ' ');
+
+        let command = get_file('/cmd/'+cmd[0]);
+        let show_cmd_not_found_string = true
+        // if (command && isString(command.content)) {
+        //     print("Cannot execute string!", "red");
+        //     print("Tip: Use mkfunc to tranform file to func content!\n");
+        //     show_cmd_not_found_string = false;
+        //     allow_eval = false;
+        // }
+
+        if (command && allow_eval && command.type === "command") {
+            // eval(command.content)(cmd);
+            executeCommand(cmd, command)
+        } else {
+            if (show_cmd_not_found_string) {
+                print('Command not found.', 'red');
+            }
+        }
+
+        body.innerHTML += current_path + input;
+        focus();
+    }
+
+    const messages = [
+        'Booting up... ',
+        '====','============','======','=================','=<br>',
+        'Doing various complicated stuff...<br>',
+        '<div style="color: orange;">[WARNING] User who created this shell might be stupid</div>',
+        'Loading shell...<br>',
+        '<div style="color: green;">[OK] Loaded coreutils</div><br>',
+        '<div style="color: orange;">[WARN] No pkgman repositories loaded!</div><br>'
+    ];
+
+    const delays = [0,
+        500,
+        100,520,230,721,50,
+        500,100,700,
+        30,700
+    ];
+
+    let timedMsgIndex = 0;
+    function timedMessage() {
+        setTimeout(() => {
+            if (timedMsgIndex >= messages.length) {
+                body.innerHTML = " \
             <b>CrADOS " + version + " (C) Aberlure Technologies</b><br> \
             Type \"help\" for help.<br> \
             /"+input;
-            body.children[body.children.length-1].focus();
-            return;
-        }
-        body.innerHTML += messages[timedMsgIndex];
-        timedMsgIndex++;
-        timedMessage();
-    }, delays[timedMsgIndex]);
-}
+                body.children[body.children.length-1].focus();
+                return;
+            }
+            body.innerHTML += messages[timedMsgIndex];
+            timedMsgIndex++;
+            timedMessage();
+        }, delays[timedMsgIndex]);
+    }
+    if (skip_boot_splash) {
+        for (let i = 0; i < delays.length; i++) {
+            delays[i] = 0;
+            //Do something
+        }    }
 
-timedMessage();
- </script>
+    timedMessage();
+</script>
 </html>
