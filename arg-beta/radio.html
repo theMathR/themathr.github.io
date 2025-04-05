@@ -23,6 +23,11 @@ body {
   width: 804px;
 }
 
+#knob {
+  left: 495px;
+  top: 185px;
+}
+
   </style>
   <script>
 
@@ -40,10 +45,11 @@ function move(e) {
 
   </script>
  </head>
- <body onpointerdown = 'drag=true' onpointerup = 'drag=false' onpointermove = 'move()' >
+ <body onmousedown = 'drag=true' onmouseup = 'drag=false' onmousemove = 'move()' >
  
   <div id='radio'>
-    <img id='knob' src='knob.png'>
+      <img id='knob' src='knob.png'>
+    </div>
   </div>
   
  </body>
