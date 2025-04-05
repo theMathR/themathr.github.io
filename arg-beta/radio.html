@@ -2,7 +2,7 @@
 <html>
  <head>
   <title>> You found a radio.</title>
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
 
 html, body {
@@ -27,17 +27,13 @@ body {
   <script>
 
 var drag = false;
-var turn = 0;
-
-setInterval(() => {
-  document.getElementById("knob").style.transform = `rotate(${turn%360}deg)`; 
-  turn += 20;
-}, 50);
 
 function move(e) {
   e = e || window.event;
   e.preventDefault();
-  console.log(drag);
+
+  knobPos = document.getElementById("knob").getBoundingClientRect();
+  document.getElementById("knob").style.transform = `rotate(${Math.atan2(e.clientY - knobPos.y, e.clientX - knobPos.x)}rad)`; 
 }
 
   </script>
