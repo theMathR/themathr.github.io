@@ -65,9 +65,9 @@ function move(e) {
 
   let newCursorAngle = getAngle(e);
   let displacement = newCursorAngle - cursorAngle;
-  if (Math.abs(displacement) > Math.PI) {
+  /*if (Math.abs(displacement) > Math.PI) {
     displacement = Math.sign(displacement) * -360 + displacement;
-  } 
+  } */
   angle += displacement;
   cursorAngle = newCursorAngle;
 
