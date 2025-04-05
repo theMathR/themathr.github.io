@@ -42,6 +42,22 @@ body {
 var drag = false;
 var angle = 0;
 var cursorAngle = 0;
+var baseAngle = 0;
+
+function getAngle(e) {
+  knobPos = document.getElementById("knob").getBoundingClientRect();
+  let knobX = knobPos.x + knobPos.width/2
+  let knobY = knobPos.y + knobPos.height/2;
+  return Math.atan2(e.clientY - knobY, e.clientX - knobX);
+}
+
+function grab(e) {
+  e = e || window.event;
+  e.preventDefault();
+  drag = true;
+  cursorAngle = getAngle(e);
+  baseAngle = angle;
+}
 
 function move(e) {
   e = e || window.event;
@@ -49,13 +65,8 @@ function move(e) {
 
   if (!drag) return;
 
-  knobPos = document.getElementById("knob").getBoundingClientRect();
-  let knobX = knobPos.x + knobPos.width/2
-  let knobY = knobPos.y + knobPos.height/2;
-
-  let newCursorAngle = Math.atan2(e.clientY - knobY, e.clientX - knobX);
-  angle += newCursorAngle - cursorAngle;
-  cursorAngle = newCursorAngle;
+  let newCursorAngle = getAngle(e);
+  angle = baseAngle + newCursorAngle - cursorAngle;
 
   document.getElementById("knob").style.transform = `rotate(${angle}rad)`; 
   document.getElementById("frequency").innerText = `${Math.round(angle * 100)} Hz`
@@ -63,7 +74,7 @@ function move(e) {
 
   </script>
  </head>
- <body onmousedown = 'drag=true' onmouseup = 'drag=false' onmousemove = 'move()' >
+ <body onmousedown = 'grab()' onmouseup = 'drag=false' onmousemove = 'move()' >
  
   <div id='radio'>
       <img id='knob' src='knob.png'>
