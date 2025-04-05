@@ -29,20 +29,36 @@ body {
   top: 185px;
 }
 
+#frequency {
+  color: greenyellow;
+  position: relative;
+  left: 300px;
+  top: 50px;
+}
+
   </style>
   <script>
 
 var drag = false;
+var angle = 0;
+var cursorAngle = 0;
 
 function move(e) {
   e = e || window.event;
   e.preventDefault();
 
   if (!drag) return;
+
   knobPos = document.getElementById("knob").getBoundingClientRect();
   let knobX = knobPos.x + knobPos.width/2
   let knobY = knobPos.y + knobPos.height/2;
-  document.getElementById("knob").style.transform = `rotate(${Math.atan2(e.clientY - knobY, e.clientX - knobX)}rad)`; 
+
+  let newCursorAngle = Math.atan2(e.clientY - knobY, e.clientX - knobX);
+  angle += newCursorAngle - cursorAngle;
+  cursorAngle = newCursorAngle;
+
+  document.getElementById("knob").style.transform = `rotate(${angle}rad)`; 
+  document.getElementById("frequency").innerText = `${Math.round(angle * 100)} Hz`
 }
 
   </script>
@@ -51,6 +67,7 @@ function move(e) {
  
   <div id='radio'>
       <img id='knob' src='knob.png'>
+      <div id='frequency'>0 Hz</div>
     </div>
   </div>
   
