@@ -24,6 +24,7 @@ body {
 }
 
 #knob {
+  position: relative;
   left: 495px;
   top: 185px;
 }
@@ -39,7 +40,8 @@ function move(e) {
 
   if (!drag) return;
   knobPos = document.getElementById("knob").getBoundingClientRect();
-  knobX, knobY = knobPos.x + knobPos.width/2, knobPos.y + knobPos.height/2;
+  let knobX = knobPos.x + knobPos.width/2
+  let knobY = knobPos.y + knobPos.height/2;
   document.getElementById("knob").style.transform = `rotate(${Math.atan2(e.clientY - knobY, e.clientX - knobX)}rad)`; 
 }
 
