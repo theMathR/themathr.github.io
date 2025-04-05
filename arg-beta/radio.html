@@ -5,8 +5,22 @@
   <meta name="viewport" content="width=device-width">
   <style>
 
-.radio {
-  background-image: url('radio.png') no-repeat;
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#radio {
+  background: url(radio.png) no-repeat;
+  height: 471px;
+  width: 804px;
 }
 
   </style>
@@ -30,8 +44,8 @@ function move(e) {
  </head>
  <body onmousedown = 'drag=true' onmouseup = 'drag=false' onmousemove = 'move()' >
  
-  <div class='radio'>
-    <img class='knob' src='knob.png'>
+  <div id='radio'>
+    <img id='knob' src='knob.png'>
   </div>
   
  </body>
