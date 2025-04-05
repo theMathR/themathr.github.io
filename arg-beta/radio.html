@@ -64,9 +64,11 @@ function move(e) {
   if (!drag) return;
 
   let newCursorAngle = getAngle(e);
-  let displacement = newCursorAngle - cursorAngle;
   console.log(newCursorAngle, ' ', cursorAngle)
-  angle += displacement;
+  angle += newCursorAngle - cursorAngle;
+  if (newCursorAngle * cursorAngle < 0) { // If the signs aren't equal (cool way of checking)
+    angle -= 2 * Math.PI * Math.sign(newCursorAngle);
+  }
   cursorAngle = newCursorAngle;
 
   document.getElementById("knob").style.transform = `rotate(${angle}rad)`; 
