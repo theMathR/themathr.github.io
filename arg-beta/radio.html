@@ -32,13 +32,15 @@ function move(e) {
   e = e || window.event;
   e.preventDefault();
 
+  if (!drag) return;
   knobPos = document.getElementById("knob").getBoundingClientRect();
-  document.getElementById("knob").style.transform = `rotate(${Math.atan2(e.clientY - knobPos.y, e.clientX - knobPos.x)}rad)`; 
+  knobX, knobY = knobPos.x + knobPos.width/2, knobPos.y + knobPos.height/2;
+  document.getElementById("knob").style.transform = `rotate(${Math.atan2(e.clientY - knobY, e.clientX - knobX)}rad)`; 
 }
 
   </script>
  </head>
- <body onmousedown = 'drag=true' onmouseup = 'drag=false' onmousemove = 'move()' >
+ <body onpointerdown = 'drag=true' onpointerup = 'drag=false' onpointermove = 'move()' >
  
   <div id='radio'>
     <img id='knob' src='knob.png'>
