@@ -1,13 +1,14 @@
 <!doctype html>
 <html>
- <head>
-  <title>> You found a radio.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
 
+<head>
+    <title>> You found a radio.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
 html, body {
   margin: 0;
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -19,28 +20,41 @@ body {
 
 #radio {
   background: url(radio.png) no-repeat;
-  height: 471px;
-  width: 804px;
+  background-size: contain;
+  width: 75%;
+  max-width: 804px;
+  aspect-ratio:  804 / 471;
+  position: relative;
 }
 
 #knob {
   position: relative;
-  left: 495px;
-  top: 185px;
+  left: 61.6%;
+  top: 39.6%;
+  width: 9.8%;
+  
 }
 
 #frequency {
   color: greenyellow;
   position: relative;
-  left: 300px;
-  top: 50px;
+  left: 40.3%;
+  top: 10.6%;
+  font-size: 1vw;
 }
+    </style>
+</head>
 
-  </style>
-  <script>
+<body onpointerdown='grab()' onpointerup='drag=false' onpointermove='move()'>
 
+    <div id='radio'>
+        <img id='knob' src='knob.png'>
+        <div id='frequency'>0 Hz</div>
+    </div>
+
+    <script>
 var drag = false;
-var angle = 0;
+var angle = 3 * 2 * Math.PI;
 var cursorAngle = 0;
 
 function getAngle(e) {
@@ -70,20 +84,19 @@ function move(e) {
     angle -= 2 * Math.PI * Math.sign(newCursorAngle);
   }
   cursorAngle = newCursorAngle;
+  
+  angle = Math.max(0, Math.min(angle, 6 * 2 * Math.PI));
+  
+  update();
+}
 
+function update() {
   document.getElementById("knob").style.transform = `rotate(${angle}rad)`; 
   document.getElementById("frequency").innerText = `${Math.round(angle * 100)} Hz`
 }
 
-  </script>
- </head>
- <body onmousedown = 'grab()' onmouseup = 'drag=false' onmousemove = 'move()' >
- 
-  <div id='radio'>
-      <img id='knob' src='knob.png'>
-      <div id='frequency'>0 Hz</div>
-    </div>
-  </div>
-  
- </body>
+update();
+    </script>
+</body>
+
 </html>
