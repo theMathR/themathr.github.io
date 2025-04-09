@@ -21,9 +21,9 @@ body {
 #radio {
   background: url(radio.png) no-repeat;
   background-size: contain;
-  width: 75%;
+  width: 100%;
   max-width: 804px;
-  aspect-ratio:  804 / 471;
+  aspect-ratio: 804 / 471;
   position: relative;
 }
 
@@ -52,6 +52,7 @@ body {
         <div id='frequency'>0 Hz</div>
     </div>
 
+    <script crossorigin="anonymous" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     <script>
 var drag = false;
 var angle = 3 * 2 * Math.PI;
@@ -78,7 +79,6 @@ function move(e) {
   if (!drag) return;
 
   let newCursorAngle = getAngle(e);
-  console.log(newCursorAngle, ' ', cursorAngle)
   angle += newCursorAngle - cursorAngle;
   if (newCursorAngle * cursorAngle < -1) {
     angle -= 2 * Math.PI * Math.sign(newCursorAngle);
@@ -96,6 +96,12 @@ function update() {
 }
 
 update();
+
+var noise = new Howl({
+  src: ['noise.mp3'],
+  autoplay: true,
+  loop: true,
+});
     </script>
 </body>
 
