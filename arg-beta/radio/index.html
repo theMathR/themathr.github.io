@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>> You found a radio.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#radio {
+  background: url(radio.png) no-repeat;
+  background-size: contain;
+  width: 100%;
+  max-width: 804px;
+  aspect-ratio: 804 / 471;
+  position: relative;
+}
+
+#knob {
+  position: relative;
+  left: 61.6%;
+  top: 39.6%;
+  width: 9.8%;
+  
+}
+
+#frequency {
+  color: greenyellow;
+  position: relative;
+  left: 40.3%;
+  top: 10.6%;
+  font-size: 1vw;
+}
+    </style>
+</head>
+
+<body onpointerdown='grab()' onpointerup='drag=false' onpointermove='move()'>
+
+    <div id='radio'>
+        <img id='knob' src='knob.png'>
+        <div id='frequency'>0 Hz</div>
+    </div>
+
+    <script crossorigin="anonymous" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script>
+var drag = false;
+var angle = 3 * Math.PI;
+var cursorAngle = 0;
+
+const freqlist = [0., Math.PI, 2*Math.PI, 3*Math.PI, 4*Math.PI, 5*Math.PI, 6*Math.PI];
+var channels = {};
+freqlist.forEach( (freq) => {
+  channels[freq] = new Howl({
+    src: [String(Math.trunc(freq*1e9)+1)+'.mp3'],
+    autoplay: true,
+    loop: true,
+    volume: 0.,
+  });
+});
+
+function getAngle(e) {
+  knobPos = document.getElementById("knob").getBoundingClientRect();
+  let knobX = knobPos.x + knobPos.width/2
+  let knobY = knobPos.y + knobPos.height/2;
+  return Math.atan2(e.clientY - knobY, e.clientX - knobX);
+}
+
+function grab(e) {
+  e = e || window.event;
+  e.preventDefault();
+  drag = true;
+  cursorAngle = getAngle(e);
+}
+
+function move(e) {
+  e = e || window.event;
+  e.preventDefault();
+
+  if (!drag) return;
+
+  let newCursorAngle = getAngle(e);
+  angle += newCursorAngle - cursorAngle;
+  if (newCursorAngle * cursorAngle < -1) {
+    angle -= 2 * Math.PI * Math.sign(newCursorAngle);
+  }
+  cursorAngle = newCursorAngle;
+  
+  angle = Math.max(0, Math.min(angle, 6 * Math.PI));
+  
+  update();
+}
+
+function update() {
+  document.getElementById("knob").style.transform = `rotate(${angle}rad)`; 
+  document.getElementById("frequency").innerText = `${Math.round(angle * 100)} Hz`
+  for (const [freq, howl] of Object.entries(channels)) {
+    howl.volume(Math.max(0, Math.min(1-Math.abs(angle - freq)/Math.PI, 1)));
+  }
+}
+
+update();
+    </script>
+</body>
+
+</html>
