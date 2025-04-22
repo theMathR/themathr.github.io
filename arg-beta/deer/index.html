@@ -15,10 +15,12 @@ body {
   background-color: black; display: flex; align-items: center; justify-content: center;
 }
 
+.size {
+  aspect-ratio: 857 / 1348;
+  max-width: 200px;
+}
 
 img {
-  aspect-ratio: 857 / 1348;
-  max-width: 300px;
   position: absolute;
 }
 
@@ -52,9 +54,9 @@ img {
 
 <body onclick='begin();'>
 
-    <div style="aspect-ratio: 857 / 1348; width: 300px; position: relative;">
-     <img alt="> You see a cervid." src='deer.jpg' id='deer'>
-     <img alt="> A cervid sees you." src='deerqm.png' id='deerqm' class='hidden'>
+    <div class='size' style="position: relative;">
+     <img class='size' alt="> You see a cervid." src='deer.jpg' id='deer'>
+     <img alt="> A cervid sees you." src='deerqm.png' id='deerqm' class='size hidden'>
     </div>
 
     <script crossorigin="anonymous" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>> You found a radio.</title>
+    <title>> There is a radio there.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
 html, body {
@@ -12,6 +12,7 @@ html, body {
 }
 
 body {
+  filter: brightness(30%);
   background-color: black;
   display: flex;
   justify-content: center;
@@ -31,21 +32,35 @@ body {
   position: relative;
   left: 61.6%;
   top: 39.6%;
-  width: 9.8%;
-  
+  width: 9.8%; 
 }
 
 #frequency {
+  opacity: 0%;
   color: greenyellow;
   position: relative;
   left: 40.3%;
   top: 10.6%;
   font-size: 1vw;
 }
+
+.start {
+  animation: anim-start 0.5s linear 1;
+  animation-timing-function: step-end;
+  filter: none;
+}
+
+@keyframes anim-start {
+  0% {filter: none;}
+  20% {filter: brightness(30%);}
+  90% {filter: none;}
+  95% {filter: brightness(30%);}
+}
+
     </style>
 </head>
 
-<body onpointerdown='grab()' onpointerup='drag=false' onpointermove='move()'>
+<body onclick='start()' onpointerdown='grab()' onpointerup='drag=false' onpointermove='move()'>
 
     <div id='radio'>
         <img id='knob' src='knob.png'>
@@ -54,12 +69,17 @@ body {
 
     <script crossorigin="anonymous" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     <script>
-var drag = false;
-var angle = 3 * Math.PI;
-var cursorAngle = 0;
+let drag = false;
+let angle = 3 * Math.PI;
+let cursorAngle = 0;
+let started = false;
+let turn_on_sound = new Howl({
+  src: ['turn_on.mp3'],
+  volume: 4,
+});
 
 const freqlist = [0., Math.PI, 2*Math.PI, 3*Math.PI, 4*Math.PI, 5*Math.PI, 6*Math.PI];
-var channels = {};
+let channels = {};
 freqlist.forEach( (freq) => {
   channels[freq] = new Howl({
     src: [String(Math.trunc(freq*1e9)+1)+'.mp3'],
@@ -77,6 +97,7 @@ function getAngle(e) {
 }
 
 function grab(e) {
+  if (!started) return;
   e = e || window.event;
   e.preventDefault();
   drag = true;
@@ -109,7 +130,22 @@ function update() {
   }
 }
 
-update();
+function start() {
+  if (started) return;
+  started = true;
+  document.getElementById("frequency").style.opacity = '100%'; 
+  document.body.classList.add("start");
+  turn_on_sound.play();
+  update();
+  document.title = '> You turned it on.';
+}
+
+function cerrku_use_this() {
+  console.log(`To add a sound at this frequency:\n- Add ${angle} to the array freqList\n- Add a file named ${String(Math.trunc(angle*1e9)+1)}.mp3`);
+}
+
+(()=>{document.getElementById("knob").style.transform = `rotate(${angle}rad)`})();
+
     </script>
 </body>
 
