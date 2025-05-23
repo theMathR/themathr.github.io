@@ -5,6 +5,10 @@
   <link rel="icon" type="image/x-icon" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+@font-face {
+    font-family: '8bitOperator';
+    src: url('8bitOperator.ttf');
+}
 
 @keyframes deltarune-bg {
   0% {background-position: 0px 0px;}
@@ -14,6 +18,21 @@
   66% {background-position: 0px 160px;}
   83% {background-position: -40px 120px;}
   100% {background-position: 0px 80px;}
+}
+
+@keyframes gaster-text-animation {
+  0% {filter: drop-shadow(1px 1px #fff3) drop-shadow(-1px 1px #fff3) drop-shadow(1px -1px #fff3) drop-shadow(-1px -1px #fff3);}
+  50% {filter: drop-shadow(1.5px 1.5px #fff5) drop-shadow(-1.5px 1.5px #fff5) drop-shadow(1.5px -1.5px #fff5) drop-shadow(-1.5px -1.5px #fff5);}
+  100% {filter: drop-shadow(1px 1px #fff3) drop-shadow(-1px 1px #fff3) drop-shadow(1px -1px #fff3) drop-shadow(-1px -1px #fff3);}
+}
+.gaster-text {
+  letter-spacing: 0.3em;
+  font-family:'8bitOperator';
+  animation-name: gaster-text-animation;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  text-align: center;
 }
 
 body {
@@ -57,7 +76,7 @@ a:hover {
 }
 
 a:active {
-  color: #fff;
+  color: #fff5;
 }
 
 h1 {
@@ -80,7 +99,7 @@ img {
   <div class="box" id="title" style="display: flex; justify-content: space-between;">
     <div>
      <h1>MathR's tiny website</h1>
-     Last updated 04/04/2025 (i use DD/MM/YYYY)
+     Last updated 23/04/2025 (i use DD/MM/YYYY)
     </div>
     <img src="pfp.png" alt="MathR" style="height: 64px; border: 3px solid white;">
   </div>
@@ -93,14 +112,21 @@ img {
   </div>
   
    <div class="box">
-    04/04/2025
-<pre>i am bored but i've got nothing to say :/
-i have to study and i've got no projects other than to boot up that old mac someone gave me (still waiting for the cables and keyboard)
-
-|
-|_
-| \
-| | o</pre>
+    23/05/2025
+    <div style="display:flex;justify-content: center;flex-direction: column;align-items: center;">
+      <p class='gaster-text'>ARE YOU<br>
+      THERE?</p>
+      <p class='gaster-text'>ARE WE<br>
+      CONNECTED?</p>
+      <p><img src="SOUL.png" alt="(* Your SOUL shined into the darkness.)" width=16></p>
+      <p class='gaster-text'>EXCELLENT.</p>
+      <p class='gaster-text'>TRULY<br>
+      EXCELLENT.</p>
+      <p class='gaster-text'>NOW.</p>
+      <p class='gaster-text'>WE MAY<br>
+      BEGIN.</p>
+      <p style="text-align: center;">DELTARUNE RELEASES<br>DELTASOON!!!</p>
+    </div>
    </div>
   
    <div class="box">
@@ -108,10 +134,6 @@ i have to study and i've got no projects other than to boot up that old mac some
 <pre>hello people
 making a website for fun
 may yap here when i'm bored</pre>
-   </div>
-  
-   <div class="box">
-    <iframe src="https://themathr.github.io/terminal" title="CRaDOS terminal" style="height: 100%; width: 100%; border: none;"></iframe>
    </div>
   
  </body>
